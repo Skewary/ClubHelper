@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200423065425) do
+ActiveRecord::Schema.define(version: 20200423075001) do
 
   create_table "activities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci" do |t|
     t.string "name", null: false
@@ -29,6 +29,9 @@ ActiveRecord::Schema.define(version: 20200423065425) do
     t.datetime "message_push_time"
     t.integer "post_horizontal_image_id"
     t.integer "post_vertical_image_id"
+    t.integer "rank"
+    t.text "reason"
+    t.text "suggestion"
     t.index ["end_time"], name: "index_activities_on_end_time"
     t.index ["name"], name: "index_activities_on_name"
     t.index ["position"], name: "index_activities_on_position"
