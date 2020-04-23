@@ -1,0 +1,62 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+basketball:
+  name: 篮球赛
+  start_time: 2100-04-13 03:04:48
+  end_time: 2100-04-13 03:04:48
+  position: MyString
+  description: MyText
+  max_people_limit: 1
+  range_category: 2
+  need_enroll: true
+  post_horizontal_picture_url: "/img"
+  post_vertical_picture_url: "/img"
+
+singer:
+  name: 十大歌手
+  start_time: 2100-04-12 03:04:48
+  end_time: 2100-04-13 03:04:48
+  position: MyString
+  description: MyText
+  max_people_limit: 1
+  range_category: 2
+  need_enroll: true
+  post_horizontal_picture_url: "/img"
+  post_vertical_picture_url: "/img"
+
+
+badminton:
+  name: 羽毛球赛
+  start_time: 2100-04-11 03:04:48
+  end_time: 2100-04-13 03:04:48
+  position: MyString
+  description: MyText
+  max_people_limit: 1
+  range_category: 2
+  need_enroll: true
+  post_horizontal_picture_url: "/img"
+  post_vertical_picture_url: "/img"
+
+badminton2:
+  name: 羽毛球赛2
+  start_time: 2100-04-10 03:04:48
+  end_time: 2100-04-13 03:04:48
+  position: MyString
+  description: MyText
+  max_people_limit: 1
+  range_category: 2
+  need_enroll: true
+  post_horizontal_picture_url: "/img"
+  post_vertical_picture_url: "/img"
+
+code:
+  name: 编程比赛
+  start_time: 2100-04-13 03:04:48
+  end_time: 2100-04-13 03:04:48
+  position: MyString
+  description: MyText
+  max_people_limit: 1
+  range_category: 2
+  need_enroll: true
+  post_horizontal_picture_url: "/img"
+  post_vertical_picture_url: "/img"

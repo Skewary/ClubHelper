@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  filename: MyString
+  tag: MyString
+  category: 1
+  token: MyString
+
+two:
+  filename: MyString
+  tag: MyString
+  category: 1
+  token: MyString

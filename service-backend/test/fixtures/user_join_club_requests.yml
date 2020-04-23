@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  club: one
+  message: ksjdfk
+  status: 1
+
+two:
+  user: two
+  club: two
+  message: skdfj
+  status: 1

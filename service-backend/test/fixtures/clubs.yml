@@ -1,0 +1,41 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+badminton:
+  name: 羽毛球社
+  english_name: Badminton
+  introduction: 羽毛球！！！！每周训练
+  level: 5
+  club_category: sport
+  is_related_to_wechat: true
+
+acapella:
+  name: 阿卡贝拉
+  english_name: acapella
+  introduction: 阿卡贝拉清唱社团
+  level: 5
+  club_category: art
+  is_related_to_wechat: false
+
+microsoft:
+  name: 微软俱乐部
+  english_name: microsoft_club
+  introduction: 想加入微软吗
+  level: 4
+  club_category: tech
+  is_related_to_wechat: false
+
+kkk:
+  name: kkk
+  english_name: kkk
+  introduction: kkk
+  level: 3
+  club_category: tech
+  is_related_to_wechat: false
+
+aaa:
+  name: aaa
+  english_name: microsoft_club
+  introduction: 想加入微软吗
+  level: 2
+  club_category: tech
+  is_related_to_wechat: false

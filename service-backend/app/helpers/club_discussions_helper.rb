@@ -1,0 +1,2 @@
+module ClubDiscussionsHelper
+end

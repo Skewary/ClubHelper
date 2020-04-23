@@ -1,0 +1,18 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  club: badminton
+  activity: badminton
+
+two:
+  club: acapella
+  activity: singer
+
+three:
+  club: badminton
+  activity: badminton2
+
+four:
+  club: microsoft
+  activity: code
+

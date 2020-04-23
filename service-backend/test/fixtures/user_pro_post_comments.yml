@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  post_comment: cone
+
+two:
+  user: two
+  post_comment: cone
+
+three:
+  user: one
+  post_comment: ctwo
+
+four:
+  user: three
+  post_comment: ctwo
+
+five:
+  user: one
+  post_comment: cfour

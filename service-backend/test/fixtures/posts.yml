@@ -1,0 +1,46 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: --p1
+  content: p1
+  category: 0
+  status: 0
+  club: badminton
+  created_at: 2019-04-13 03:17:07
+  user: three
+
+two:
+  title: --p2
+  content: p2
+  category: 0
+  status: 0
+  club: badminton
+  created_at: 2019-01-13 03:17:07
+  user: three
+
+three:
+  title: --p3
+  content: p3
+  category: 0
+  status: 0
+  club: badminton
+  created_at: 2019-03-13 03:17:07
+  user: three
+
+four:
+  title: --p4
+  content: p4
+  category: 0
+  status: 0
+  club: badminton
+  created_at: 2019-05-13 03:17:07
+  user: three
+
+five:
+  title: --p5
+  content: p5
+  category: 0
+  status: 0
+  club: acapella
+  created_at: 2019-05-13 03:17:07
+  user: three

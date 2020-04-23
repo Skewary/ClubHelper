@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+sport:
+  name: 体育类
+
+art:
+  name: 艺术类
+
+tech:
+  name: 科技类
+

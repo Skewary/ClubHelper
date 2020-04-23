@@ -1,0 +1,64 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  username: Mytring
+  nickname: nick
+  real_name: MyString
+  student_id: MyString
+  tag: MyString
+  role: 1
+  password_digest: MyString
+  remember_digest: MyString
+  open_id: 1
+  union_id: 1
+  session_key: null
+  college_id: 1
+  email: 11111@qq.com
+  political_status_id: 1
+  gender: 1
+  phone_number: 123456789
+  id_number: 111111234567890987
+  status: 1
+  avatar_url: "/one"
+
+two:
+  username: MyString
+  nickname: nick
+  real_name: MyString
+  student_id: MyString
+  tag: MyString
+  role: 2
+  password_digest: <%= User.digest('password') %>
+  remember_digest: <%= User.digest('password') %>
+  open_id: 1
+  union_id: 1
+  session_key: 1001
+  college_id: 1
+  email: 11111@qq.com
+  political_status_id: 1
+  gender: 1
+  phone_number: 123456789
+  id_number: 111111234567890987
+  avatar_url: "/two"
+  status: 0
+
+three:
+  username: zkk
+  nickname: nick
+  real_name: zkr
+  student_id: 16029999
+  tag: abcd
+  role: 3
+  password_digest: <%= User.digest('password') %>
+  remember_digest: <%= User.digest('password') %>
+  open_id: 1
+  union_id: 1
+  session_key: 1001
+  college_id: 1
+  email: 787797770@qq.com
+  political_status_id: 1
+  gender: 1
+  phone_number: 1334234321
+  id_number: 44098287887382698738
+  status: 1
+  avatar_url: "/three"
