@@ -46,6 +46,9 @@ class ActivitiesController < ApplicationController
             is_like: @user.is_pro_activity?(@activity),
             like_count: @activity.pro_users.count,
             host_clubs: host_clubs,
+            rank: @activity.rank,
+            reason: @activity.reason,
+            suggestion: @activity.suggestion,
             other:
                 {
                     introduction_article_title: @activity.introduction_article_title,
