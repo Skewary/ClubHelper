@@ -69,9 +69,6 @@ Rails.application.routes.draw do
       scope '/wxacode' do
         get '', to: 'activities#get_wxacode'
       end
-      scope '/evaluation' do
-        get '', to: 'activities_evaluate#get_evaluation', as: :activities_get_evaluation
-      end
     end
   end
 
@@ -137,7 +134,8 @@ Rails.application.routes.draw do
           post '', to: 'club_management#activity_create'
           scope ':activity_id' do
             get '', to: 'club_management#activity_profile'
-            put '', to: 'club_management#activity_update'
+            put 'update', to: 'club_management#activity_update'
+            put 'evaluate', to: 'activities_evaluate#evaluate'
             delete '', to: 'club_management#activity_destroy'
           end
         end
