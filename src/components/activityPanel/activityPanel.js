@@ -192,7 +192,7 @@ const ActivityUpdateForm = Form.create({ name: 'activity_update' })(
                   }
                   return isPdf
                 }} onChange={info => {
-                  if(info.file.type!='application/pdf'){
+                  if(info.file.type!=='application/pdf'){
                     info.fileList.pop()
                   }
                 }}>
@@ -337,7 +337,7 @@ const ActivityCreateForm = Form.create({ name: 'activity_create' })(
                   <Button>Upload</Button>
                 </Upload>
               )}
-            </Form.Item>
+              </Form.Item>
           </Form>
         </Modal>
       )
@@ -437,7 +437,7 @@ const ActivityReviewForm = Form.create({ name: 'activity_review' })(
             <Form.Item label="审核结果">
             {getFieldDecorator('review_state', {
                 valuePropName: 'checked',
-                initialValue: 0
+                initialValue: false
               })(
                 <Checkbox>
                   通过审核
@@ -494,17 +494,10 @@ const ActivityEvaluateForm = Form.create({name: 'activity_evaluate'})(
                           })(<Input disabled/>)}
                       </Form.Item>
                       <Form.Item label="活动评分(1到10打个分数吧)">
-                        {/*  <div>
-                              <Rate allowClear={false} allowHalf defaultValue={3} />
-                          </div>*/}
                           {getFieldDecorator('rank', {
                               initialValue: "",
                               rules: [{required: true, message: '请输入评分'}],
                           })(<Input.TextArea rows={1}/>)}
-                          {/*{getFieldDecorator('position', {*/}
-                          {/*initialValue: activity.place,*/}
-                          {/*rules: [{required: true, message: '请输入活动地点'}],*/}
-                          {/*})(<Input/>)}*/}
                       </Form.Item>
                       <Form.Item label="评分理由">
                           {getFieldDecorator('reason', {
@@ -541,7 +534,7 @@ export class ActivityPanel extends React.Component {
       detailVisible: false,
       detail: {},
       pass: false,
-      user: {/*role: "admin" */}//admin 社长 root 社联
+      user: {role: "admin" }//admin 社长 root 社联
     }
   }
 
@@ -622,7 +615,7 @@ export class ActivityPanel extends React.Component {
     })
   }
 
-  reviewActivity(id) {
+ reviewActivity(id) {
     const { clubId } = this.state
     this.setState({
       detail: {}
@@ -694,7 +687,7 @@ export class ActivityPanel extends React.Component {
   }
 
   handleReviewCancel = () => {
-    const form = this.updateFormRef.props.form
+    const form = this.reviewFormRef.props.form
     form.resetFields()
     this.setState({
       reviewVisible: false,
@@ -702,7 +695,7 @@ export class ActivityPanel extends React.Component {
   }
 
   handleEvaluateCancel = () => {
-    const form = this.updateFormRef.props.form
+    const form = this.evaluateFormRef.props.form //由update改为create
     form.resetFields()
     this.setState({
         evaluateVisible: false,
@@ -718,11 +711,11 @@ export class ActivityPanel extends React.Component {
   }
 
  saveEvaluateFormRef = (formRef) => {
-    this.updateFormRef = formRef      //?????????????????????????
+    this.evaluateFormRef = formRef      //由update改为create
 }
 
   saveReviewFormRef = (formRef) => {
-  this.updateFormRef = formRef      //?????????????????????????
+  this.reviewFormRef = formRef      //一定要由update改为create
 }
 
   handleUpdate = () => {
@@ -740,7 +733,7 @@ export class ActivityPanel extends React.Component {
       let post_vertical_image_token = values.post_vertical_image && values.post_vertical_image.length > 0 ?
         values.post_vertical_image[0].response.data.token : null
 
-      $put('/clubs/admin/' + clubId + '/activity/' + activityId, {
+      $put('/clubs/admin/' + clubId + '/activity/' + activityId + '/update',{
         position: values.position,
         description: values.description,
         start_time: (!!values.start_time ? values.start_time.format('YYYY-MM-DD HH:mm:ss') : undefined) || detail.start_time,
@@ -799,6 +792,7 @@ export class ActivityPanel extends React.Component {
         max_people_limit: values.max_people_limit,
         need_enroll: values.need_enroll,
         host_clubs: values.host_clubs,
+        review_state: values.review_state,
         activity_pdf: values.activity_pdf
       }).then((res) => {
         if (!res.success) {
@@ -820,7 +814,7 @@ export class ActivityPanel extends React.Component {
 
   handleReview = () => {
     const { clubId } = this.state
-    const form = this.updateFormRef.props.form
+    const form = this.reviewFormRef.props.form //由update改为create？？？create没反应
     form.validateFields((err, values) => {
       if (err) {
         return
@@ -828,25 +822,8 @@ export class ActivityPanel extends React.Component {
       const activityId = this.state.detail.id
       const { detail } = this.state
 
-      /*let post_horizontal_image_token = values.post_horizontal_image && values.post_horizontal_image.length > 0 ?
-        values.post_horizontal_image[0].response.data.token : null
-      let post_vertical_image_token = values.post_vertical_image && values.post_vertical_image.length > 0 ?
-        values.post_vertical_image[0].response.data.token : null*/
-
       $put('/clubs/admin/' + clubId + '/activity/' + activityId + '/review', {
-        /*position: values.position,
-        description: values.description,
-        start_time: (!!values.start_time ? values.start_time.format('YYYY-MM-DD HH:mm:ss') : undefined) || detail.start_time,
-        end_time: (!!values.end_time ? values.end_time.format('YYYY-MM-DD HH:mm:ss') : undefined) || detail.end_time,
-        post_horizontal_image_token: post_horizontal_image_token,
-        post_vertical_image_token: post_vertical_image_token,
-        introduction_article_title: values.introduction_article_title,
-        introduction_article_url: values.introduction_article_url,
-        retrospect_article_title: values.retrospect_article_title,
-        retrospect_article_url: values.retrospect_article_url,
-        max_people_limit: values.max_people_limit,
-        need_enroll: values.need_enroll,
-        host_clubs: values.host_clubs,*/
+
         review_state: values.review_state,
         review_reason: values.review_reason
       }).then((res) => {
@@ -867,9 +844,9 @@ export class ActivityPanel extends React.Component {
     })
   }
 
-  handleEvaluate = () => {
+ handleEvaluate = () => {
     const {clubId} = this.state
-    const form = this.updateFormRef.props.form
+    const form = this.evaluateFormRef.props.form //由update改为create
     form.validateFields((err, values) => {
         if (err) {
             return
@@ -1077,14 +1054,14 @@ export class ActivityPanel extends React.Component {
           <Row>
             <Col span={12}>
               <DescriptionItem title="审核结果" content={
-                detail.review_state === 1 ? "通过" : "不通过"}/>
+                detail.review_state === true ? "通过" : "不通过"}/>
             </Col>
           </Row>
           <Row>
             <Col span={12}>
               <DescriptionItem title="审核原因" content={detail.review_reason}/>
             </Col>
-          </Row>
+              </Row>*
         </Drawer>
         {activitiesView}</div>
     )
