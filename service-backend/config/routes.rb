@@ -134,8 +134,9 @@ Rails.application.routes.draw do
           post '', to: 'club_management#activity_create'
           scope ':activity_id' do
             get '', to: 'club_management#activity_profile'
-            put 'update', to: 'club_management#activity_update'
-            put 'evaluate', to: 'activities_evaluate#evaluate'
+            put '/update', to: 'club_management#activity_update'
+            put '/evaluate', to: 'club_management#activity_evaluate'
+            put '/review', to: 'club_management#activity_review'
             delete '', to: 'club_management#activity_destroy'
           end
         end

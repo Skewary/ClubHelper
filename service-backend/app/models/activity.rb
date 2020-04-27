@@ -47,7 +47,12 @@ class Activity < ApplicationRecord
         retrospect_article_url: self.retrospect_article_url,
         max_people_limit: self.max_people_limit, #活动最大人数
         need_enroll: self.need_enroll, #活动是否需要报名
-        host_clubs: self.clubs.collect { |club| {id: club.id, name: club.name} }
+        host_clubs: self.clubs.collect { |club| {id: club.id, name: club.name} },
+        reason:self.reason,
+        rank: self.rank,
+        suggestion: self.suggestion,
+        review_state: self.review_state,
+        review_reason: self.review_reason
     }
   end
 

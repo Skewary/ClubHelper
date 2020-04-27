@@ -4,26 +4,41 @@ class ClubManagementController < ApplicationController
   before_action :root_only, only: [:club_create]
   before_action :_find_club, only:
       %i[club_profile club_update
-         activity_index activity_create activity_profile activity_update
+         activity_index activity_create activity_profile activity_update activity_evaluate
          article_index article_create article_profile article_update]
-  before_action :_find_activity, only: %i[activity_profile activity_update]
+  before_action :_find_activity, only: %i[activity_profile activity_update activity_evaluate]
   before_action :_find_article, only: %i[article_profile article_update]
 
   include WechatHelper
   extend WechatHelper
 
-  def evaluate
-    activity = Activity.find_by(id: params[:activity_id])
-    activity.rank = params[:rank]
-    activity.reason = params[:reason]
-    activity.suggestion = params[:suggestion]
-    render status: 200, json: response_json(
-      true,
-      data: {
-        activity_id: activity.id
-      },
-      message: 'Evaluate success!'
-    )
+  def activity_evaluate # 评分在0-10分，如果很热爱或很厌恶这项运动就会被限制
+    @activity.rank = params[:rank]
+    if @activity.rank > 10
+      @activity.rank = 10
+    elsif @activity.rank < 0
+      @activity.rank = 0
+    end
+    @activity.reason = params[:reason]
+    @activity.suggestion = params[:suggestion]
+    if @activity.save
+      render status: 200, json: response_json(
+        true,
+        data: {
+          activity_id: @activity.id
+        },
+        message: 'Evaluate success.'
+      )
+    else
+      render status: 400, json: response_json(
+        false,
+        code: ClubManagementErrorCode::ACTIVITY_UPDATE_FAILED,
+        message: 'Evaluate fail.',
+        data: {
+          errors: @activity.error_messages
+        }
+      )
+    end
   end
 
   private def _find_club

@@ -32,6 +32,8 @@ ActiveRecord::Schema.define(version: 20200423075001) do
     t.integer "rank"
     t.text "reason"
     t.text "suggestion"
+    t.integer "review_state", null: false
+    t.text "review_reason"
     t.index ["end_time"], name: "index_activities_on_end_time"
     t.index ["name"], name: "index_activities_on_name"
     t.index ["position"], name: "index_activities_on_position"
