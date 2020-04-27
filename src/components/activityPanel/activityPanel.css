@@ -10,6 +10,7 @@
 }
 
 .activity-card {
+  top: 80px; 
   width: 352px;
   margin: 25px;
 }

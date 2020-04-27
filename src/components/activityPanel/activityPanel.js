@@ -184,29 +184,21 @@ const ActivityUpdateForm = Form.create({ name: 'activity_update' })(
               )}
             </Form.Item>
             <Form.Item label={'上传pdf文件'}>
-              <Upload showUploadList = {true} action='/hello/' beforeUpload={(file,fileList) => {
-                let isPdf = file.type === 'application/pdf'
-                if (!isPdf) {
-                  message.error('请上传PDF文件')
-                }
-                return isPdf
-              }} onChange={info => {
-                if(info.file.type!=='application/pdf'){
-                  info.fileList.pop()
-                }
-              }}>
-                <Button>Upload</Button>
-              </Upload>
-            </Form.Item>
-            <Form.Item label="审核结果">
-              {getFieldDecorator('pass', {
-                initialValue: activity.pass
-              })(<Input disabled />)}
-            </Form.Item>
-            <Form.Item label="补充信息">
-              {getFieldDecorator('message', {
-                initialValue: activity.message
-              })(<Input disabled />)}
+              {getFieldDecorator('activity_pdf')(
+                <Upload showUploadList = {true} action='/hello/' beforeUpload={(file,fileList) => {
+                  let isPdf = file.type == 'application/pdf'
+                  if (!isPdf) {
+                    message.error('请上传PDF文件')
+                  }
+                  return isPdf
+                }} onChange={info => {
+                  if(info.file.type!='application/pdf'){
+                    info.fileList.pop()
+                  }
+                }}>
+                  <Button>Upload</Button>
+                </Upload>
+              )}
             </Form.Item>
           </Form>
         </Modal>
@@ -330,19 +322,21 @@ const ActivityCreateForm = Form.create({ name: 'activity_create' })(
               )}
             </Form.Item>
             <Form.Item label={'上传pdf文件'}>
-              <Upload showUploadList = {true} action='/hello/' beforeUpload={(file,fileList) => {
-                let isPdf = file.type == 'application/pdf'
-                if (!isPdf) {
-                  message.error('请上传PDF文件')
-                }
-                return isPdf
-              }} onChange={info => {
-                if(info.file.type!='application/pdf'){
-                  info.fileList.pop()
-                }
-              }}>
-                <Button>Upload</Button>
-              </Upload>
+              {getFieldDecorator('activity_pdf')(
+                <Upload showUploadList = {true} action='/hello/' beforeUpload={(file,fileList) => {
+                  let isPdf = file.type == 'application/pdf'
+                  if (!isPdf) {
+                    message.error('请上传PDF文件')
+                  }
+                  return isPdf
+                }} onChange={info => {
+                  if(info.file.type!='application/pdf'){
+                    info.fileList.pop()
+                  }
+                }}>
+                  <Button>Upload</Button>
+                </Upload>
+              )}
             </Form.Item>
           </Form>
         </Modal>
@@ -407,83 +401,53 @@ const ActivityReviewForm = Form.create({ name: 'activity_review' })(
                 initialValue: activity.end_time
               })(<Input disabled /> )}
             </Form.Item>
-            <Form.Item label={'横板海报图片'}>
-              {getFieldDecorator('post_horizontal_image', {
-                valuePropName: 'fileList'
-              })(
-                <PictureUploader max={1} />
-              )}
-            </Form.Item>
-            <Form.Item label={'竖版海报图片'}>
-              {getFieldDecorator('post_vertical_image', {
-                valuePropName: 'fileList'
-              })(
-                <PictureUploader max={1} />
-              )}
-            </Form.Item>
             <Form.Item label={'活动介绍推送标题'}>
               {getFieldDecorator('introduction_article_title', {
                 initialValue: activity.introduction_article_title
               })(
-                <Input />
+                <Input disabled/>
               )}
             </Form.Item>
             <Form.Item label={'活动介绍推送链接'}>
               {getFieldDecorator('introduction_article_url', {
                 initialValue: activity.introduction_article_url
               })(
-                <Input />
+                <Input disabled/>
               )}
             </Form.Item>
             <Form.Item label={'活动回顾推送标题'}>
               {getFieldDecorator('retrospect_article_title', {
                 initialValue: activity.retrospect_article_title
               })(
-                <Input />
+                <Input disabled/>
               )}
             </Form.Item>
             <Form.Item label={'活动回顾推送链接'}>
               {getFieldDecorator('retrospect_article_url', {
                 initialValue: activity.retrospect_article_url
               })(
-                <Input />
+                <Input disabled/>
               )}
             </Form.Item>
             <Form.Item label="活动大致规模（单位：人）">
               {getFieldDecorator('max_people_limit', {
                 initialValue: activity.max_people_limit
-              })(<InputNumber min={1} max={2000} />)}
-            </Form.Item>
-            <Form.Item label="是否需要报名" help={'本系统不提供报名功能，建议录入活动介绍的推送，或在活动下方评论区说明报名方式。'}>
-              {getFieldDecorator('need_enroll', {
-                valuePropName: 'checked',
-                initialValue: activity.need_enroll || false
-              })(
-                <Checkbox>
-                  需要报名
-                </Checkbox>
-              )}
-            </Form.Item>
-            <Form.Item label={'共同举办的社团（移除自己无效哦）'}>
-              {getFieldDecorator('host_clubs', {
-                initialValue: activity.host_clubs ? activity.host_clubs.map(item => {
-                  return item.name
-                }) : []
-              })(
-                <Select mode={'multiple'} placeholder={'请选择共同举办的社团'}>
-                  {children}
-                </Select>
-              )}
+              })(<Input disabled/>)}
             </Form.Item>
             <Form.Item label="审核结果">
-              <label > <input type="radio" name='pass' value="passed"
-                                        onChange={this.handleChange}/>通过</label><br/>
-              <label > <input type="radio" name='pass' value="unpassed"
-                                        onChange={this.handleChange}/>不通过</label>            
+            {getFieldDecorator('review_state', {
+                valuePropName: 'checked',
+                initialValue: 0
+              })(
+                <Checkbox>
+                  通过审核
+                </Checkbox>
+              )} 
+                      
             </Form.Item>
-            <Form.Item label="补充信息">
-              {getFieldDecorator('reason', {
-                  rules: [{required: true, message: '请输入补充信息'}],
+            <Form.Item label="审核理由">
+              {getFieldDecorator('review_reason', {
+                  rules: [{required: true, message: '请输入审核理由'}],
               })(<Input.TextArea rows={5}/>)}
             </Form.Item>
           </Form>
@@ -529,24 +493,28 @@ const ActivityEvaluateForm = Form.create({name: 'activity_evaluate'})(
                               initialValue: activity.name
                           })(<Input disabled/>)}
                       </Form.Item>
-                      <Form.Item label="活动评分">
-                          <div>
+                      <Form.Item label="活动评分(1到10打个分数吧)">
+                        {/*  <div>
                               <Rate allowClear={false} allowHalf defaultValue={3} />
-                          </div>
+                          </div>*/}
+                          {getFieldDecorator('rank', {
+                              initialValue: "",
+                              rules: [{required: true, message: '请输入评分'}],
+                          })(<Input.TextArea rows={1}/>)}
                           {/*{getFieldDecorator('position', {*/}
-                              {/*initialValue: activity.place,*/}
-                              {/*rules: [{required: true, message: '请输入活动地点'}],*/}
+                          {/*initialValue: activity.place,*/}
+                          {/*rules: [{required: true, message: '请输入活动地点'}],*/}
                           {/*})(<Input/>)}*/}
                       </Form.Item>
                       <Form.Item label="评分理由">
                           {getFieldDecorator('reason', {
-                              initialValue: "666",
+                              initialValue: "",
                               rules: [{required: true, message: '请输入评分理由'}],
                           })(<Input.TextArea rows={5}/>)}
                       </Form.Item>
                       <Form.Item label="有无建议">
                           {getFieldDecorator('suggestion', {
-                              initialValue: "6666",
+                              initialValue: "",
                               rules: [{required: true, message: '请输入相关建议'}],
                           })(<Input.TextArea rows={5}/>)}
                       </Form.Item>
@@ -573,7 +541,7 @@ export class ActivityPanel extends React.Component {
       detailVisible: false,
       detail: {},
       pass: false,
-      user: { role: "admin" }//admin 社长 root 社联
+      user: {/*role: "admin" */}//admin 社长 root 社联
     }
   }
 
@@ -726,7 +694,7 @@ export class ActivityPanel extends React.Component {
   }
 
   handleReviewCancel = () => {
-    const form = this.reviewFormRef.props.form
+    const form = this.updateFormRef.props.form
     form.resetFields()
     this.setState({
       reviewVisible: false,
@@ -749,12 +717,12 @@ export class ActivityPanel extends React.Component {
     this.createFormRef = formRef
   }
 
-  saveEvaluateFormRef = (formRef) => {
+ saveEvaluateFormRef = (formRef) => {
     this.updateFormRef = formRef      //?????????????????????????
 }
 
-  saveEvaluateFormRef = (formRef) => {
-  this.reviewFormRef = formRef      //?????????????????????????
+  saveReviewFormRef = (formRef) => {
+  this.updateFormRef = formRef      //?????????????????????????
 }
 
   handleUpdate = () => {
@@ -785,7 +753,8 @@ export class ActivityPanel extends React.Component {
         retrospect_article_url: values.retrospect_article_url,
         max_people_limit: values.max_people_limit,
         need_enroll: values.need_enroll,
-        host_clubs: values.host_clubs
+        host_clubs: values.host_clubs,
+        activity_pdf: values.activity_pdf
       }).then((res) => {
         if (!res.success) {
           Modal.confirm({
@@ -829,7 +798,8 @@ export class ActivityPanel extends React.Component {
         retrospect_article_url: values.retrospect_article_url,
         max_people_limit: values.max_people_limit,
         need_enroll: values.need_enroll,
-        host_clubs: values.host_clubs
+        host_clubs: values.host_clubs,
+        activity_pdf: values.activity_pdf
       }).then((res) => {
         if (!res.success) {
           Modal.confirm({
@@ -850,7 +820,7 @@ export class ActivityPanel extends React.Component {
 
   handleReview = () => {
     const { clubId } = this.state
-    const form = this.reviewFormRef.props.form
+    const form = this.updateFormRef.props.form
     form.validateFields((err, values) => {
       if (err) {
         return
@@ -858,13 +828,13 @@ export class ActivityPanel extends React.Component {
       const activityId = this.state.detail.id
       const { detail } = this.state
 
-      let post_horizontal_image_token = values.post_horizontal_image && values.post_horizontal_image.length > 0 ?
+      /*let post_horizontal_image_token = values.post_horizontal_image && values.post_horizontal_image.length > 0 ?
         values.post_horizontal_image[0].response.data.token : null
       let post_vertical_image_token = values.post_vertical_image && values.post_vertical_image.length > 0 ?
-        values.post_vertical_image[0].response.data.token : null
+        values.post_vertical_image[0].response.data.token : null*/
 
-      $put('/clubs/admin/' + clubId + '/activity/' + activityId, {
-        position: values.position,
+      $put('/clubs/admin/' + clubId + '/activity/' + activityId + '/review', {
+        /*position: values.position,
         description: values.description,
         start_time: (!!values.start_time ? values.start_time.format('YYYY-MM-DD HH:mm:ss') : undefined) || detail.start_time,
         end_time: (!!values.end_time ? values.end_time.format('YYYY-MM-DD HH:mm:ss') : undefined) || detail.end_time,
@@ -876,11 +846,13 @@ export class ActivityPanel extends React.Component {
         retrospect_article_url: values.retrospect_article_url,
         max_people_limit: values.max_people_limit,
         need_enroll: values.need_enroll,
-        host_clubs: values.host_clubs
+        host_clubs: values.host_clubs,*/
+        review_state: values.review_state,
+        review_reason: values.review_reason
       }).then((res) => {
         if (!res.success) {
           Modal.confirm({
-            title: '活动信息更新失败',
+            title: '活动审核更新失败',
             content: '请检查您的输入后重试',
             okText: '我知道了',
             cancelText: '好的'
@@ -896,61 +868,46 @@ export class ActivityPanel extends React.Component {
   }
 
   handleEvaluate = () => {
-    /* const {clubId} = this.state
-     const form = this.updateFormRef.props.form
-     form.validateFields((err, values) => {
-         if (err) {
-             return
-         }
-         const activityId = this.state.detail.id
-         const {detail} = this.state
+    const {clubId} = this.state
+    const form = this.updateFormRef.props.form
+    form.validateFields((err, values) => {
+        if (err) {
+            return
+        }
+        const activityId = this.state.detail.id
+        const {detail} = this.state
 
-         let post_horizontal_image_token = values.post_horizontal_image && values.post_horizontal_image.length > 0 ?
-             values.post_horizontal_image[0].response.data.token : null
-         let post_vertical_image_token = values.post_vertical_image && values.post_vertical_image.length > 0 ?
-             values.post_vertical_image[0].response.data.token : null
 
-         $put('/clubs/admin/' + clubId + '/activity/' + activityId, {
-             position: values.position,
-             description: values.description,
-             start_time: (!!values.start_time ? values.start_time.format('YYYY-MM-DD HH:mm:ss') : undefined) || detail.start_time,
-             end_time: (!!values.end_time ? values.end_time.format('YYYY-MM-DD HH:mm:ss') : undefined) || detail.end_time,
-             post_horizontal_image_token: post_horizontal_image_token,
-             post_vertical_image_token: post_vertical_image_token,
-             introduction_article_title: values.introduction_article_title,
-             introduction_article_url: values.introduction_article_url,
-             retrospect_article_title: values.retrospect_article_title,
-             retrospect_article_url: values.retrospect_article_url,
-             max_people_limit: values.max_people_limit,
-             need_enroll: values.need_enroll,
-             host_clubs: values.host_clubs
-         }).then((res) => {
-             if (!res.success) {
-                 Modal.confirm({
-                     title: '活动信息更新失败',
-                     content: '请检查您的输入后重试',
-                     okText: '我知道了',
-                     cancelText: '好的'
-                 })
-             } else {
-                 this.setState({editVisible: false}, () => {
-                     form.resetFields()
-                     this.refresh()
-                 })
-             }
-         })
-     })*/
-    //等待后端数据，不进行任何操作
-     const form = this.updateFormRef.props.form
-     form.resetFields()
-     this.props.history.push('/admin/index')
- }
+        $put('/clubs/admin/' + clubId + '/activity/' + activityId + '/evaluate', {
+            rank:values.rank,
+            reason:values.reason,
+            suggestion:values.suggestion
+
+        }).then((res) => {
+            if (!res.success) {
+                Modal.confirm({
+                    title: '评价信息更新失败',
+                    content: '请检查您的输入后重试',
+                    okText: '我知道了',
+                    cancelText: '好的'
+                })
+            } else {
+                this.setState({evaluateVisible: false}, () => {
+                    form.resetFields()
+                    this.refresh()
+                })
+            }
+        })
+    })
+
+
+}
 
   goBack() {
     this.props.history.goBack()
   }
 
-  render() {
+  render() { //change
     let { activities, detail, user } = this.state
     let activitiesView = null
     if (activities.length !== 0) {
@@ -961,19 +918,11 @@ export class ActivityPanel extends React.Component {
                                  style={{height: 175, width: 350}} alt={'poster'}
                                  src={img(activity.post_url_horizontal)}/>}
                      actions={user.role === 'admin' ? [ ///社长
-                      <div><Icon style={{fontSize: 20}}
-                                                type="tag"/>
-                        <div style={{fontSize: 8}}>未通过</div>
-                      </div>,
                       <div onClick={this.editActivity.bind(this, activity.id)}><Icon style={{fontSize: 20}}
                                                         type="edit"/>
                         <div style={{fontSize: 8}}>编辑</div>
                       </div>]
                       : user.role === 'root' ? [ //社联
-                        <div><Icon style={{fontSize: 20}}
-                                                type="tag"/>
-                          <div style={{fontSize: 8}}>未通过</div>
-                        </div>,
                         <div onClick={this.reviewActivity.bind(this, activity.id)}><Icon style={{fontSize: 20}}
                                             type="edit"/>
                           <div style={{fontSize: 8}}>审核</div>
@@ -993,6 +942,18 @@ export class ActivityPanel extends React.Component {
     }
     return (
       <div className={'activity-container'}>
+        <Button onClick={() => {
+          let newRole = 'admin'
+          this.setState({
+            user: { role: newRole }
+          })
+        }}size={'small'}>社长</Button>
+        <Button onClick={() => {
+          let newRole = 'root'
+          this.setState({
+            user: { role: newRole }
+          })
+        }}size={'small'}>社联</Button>
         {user.role === 'admin' ? [
           <div className={'article-button-wrap'}>
             <Button className={'activity-button'} onClick={this.goBack.bind(this)} shape={'circle'} icon={'left'}
@@ -1019,10 +980,10 @@ export class ActivityPanel extends React.Component {
           onCreate={this.handleCreate}
         />
         <ActivityReviewForm
-          wrappedComponentRef={this.saveCreateFormRef}
+          wrappedComponentRef={this.saveReviewFormRef}
           visible={this.state.reviewVisible}
-          onCancel={this.handleCreateCancel}
-          onCreate={this.handleCreate}
+          onCancel={this.handleReviewCancel}
+          onCreate={this.handleReview}
           activity={this.state.detail}
         />
         <ActivityEvaluateForm
@@ -1096,6 +1057,32 @@ export class ActivityPanel extends React.Component {
             </Col>
             <Col span={12}>
               <DescriptionItem title="活动介绍推送链接" content={detail.retrospect_article_url} />
+            </Col>
+          </Row>
+          <Row>
+            <Col span={12}>
+              <DescriptionItem title="活动评分" content={detail.rank}/>
+            </Col>
+          </Row>
+          <Row>
+            <Col span={12}>
+               <DescriptionItem title="评分理由" content={detail.reason}/>
+            </Col>
+          </Row>
+          <Row>
+            <Col span={12}>
+              <DescriptionItem title="改进建议" content={detail.suggestion}/>
+            </Col>
+          </Row>
+          <Row>
+            <Col span={12}>
+              <DescriptionItem title="审核结果" content={
+                detail.review_state === 1 ? "通过" : "不通过"}/>
+            </Col>
+          </Row>
+          <Row>
+            <Col span={12}>
+              <DescriptionItem title="审核原因" content={detail.review_reason}/>
             </Col>
           </Row>
         </Drawer>

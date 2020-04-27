@@ -225,7 +225,7 @@ export class ClubPanel extends React.Component {
       $get('/clubs/admin/' + id).then(res => {
         if (res.success) {
           let newClub = res.data.club
-          newClub.tags = {'h':1}
+          newClub.tags = ['tag1','tag2']
           this.setState({
             editVisible: true,
             detail: res.data.club
@@ -302,12 +302,7 @@ export class ClubPanel extends React.Component {
       clubsView = clubs.map((club, index) => {
         //console.log(club)
         let actions =
-          user.role == 'root' ? [
-            <div onClick={this.showActivities.bind(this, club.id)}><Icon style={{ fontSize: 20 }} type="edit" />
-              <div style={{ fontSize: 8 }}><Badge dot={club.unevaluated}>
-                评价
-                </Badge></div>
-            </div>,
+          user.role === 'root' ? [
             <div onClick={this.showArticles.bind(this, club.id)}><Icon style={{ fontSize: 20 }} type="tags" />
               <div style={{ fontSize: 8 }}>
                 <Badge dot={false}>
@@ -319,20 +314,29 @@ export class ClubPanel extends React.Component {
               type="calendar" />
               <div style={{ fontSize: 8 }}>
                 <Badge dot={club.applying}>
-                  申请
+                  活动
                 </Badge>
               </div>
             </div>] :
-            user.role = 'admin' ? [
+            user.role === 'admin' ? [
               <div onClick={this.editClub.bind(this, club.id)}><Icon style={{ fontSize: 20 }} type="edit" />
-                <div style={{ fontSize: 8 }}>编辑</div>
+                <div style={{ fontSize: 8 }}>
+                  <Badge dot={false}>
+                  编辑
+                </Badge></div>
               </div>,
               <div onClick={this.showArticles.bind(this, club.id)}><Icon style={{ fontSize: 20 }} type="tags" />
-                <div style={{ fontSize: 8 }}>新闻</div>
+                <div style={{ fontSize: 8 }}>
+                  <Badge dot={false}>
+                  新闻
+                </Badge></div>
               </div>,
               <div onClick={this.showActivities.bind(this, club.id)}><Icon style={{ fontSize: 20 }}
                 type="calendar" />
-                <div style={{ fontSize: 8 }}>活动</div>
+                <div style={{ fontSize: 8 }}>
+                  <Badge dot={false}>
+                  申请
+                </Badge></div>
               </div>] :
               []
         return <Card className={'club-card'} key={index}
@@ -353,11 +357,6 @@ export class ClubPanel extends React.Component {
           }
           let actions =
             user.role == 'root' ? [
-              <div onClick={this.showActivities.bind(this, club.id)}><Icon style={{ fontSize: 20 }} type="edit" />
-                <div style={{ fontSize: 8 }}><Badge dot={club.unevaluated}>
-                  评价
-                  </Badge></div>
-              </div>,
               <div onClick={this.showArticles.bind(this, club.id)}><Icon style={{ fontSize: 20 }} type="tags" />
                 <div style={{ fontSize: 8 }}>
                   <Badge dot={false}>
@@ -369,20 +368,32 @@ export class ClubPanel extends React.Component {
                 type="calendar" />
                 <div style={{ fontSize: 8 }}>
                   <Badge dot={club.applying}>
-                    申请
+                    活动
                   </Badge>
                 </div>
               </div>] :
               user.role = 'admin' ? [
                 <div onClick={this.editClub.bind(this, club.id)}><Icon style={{ fontSize: 20 }} type="edit" />
-                  <div style={{ fontSize: 8 }}>编辑</div>
+                  <div style={{ fontSize: 8 }}>
+                  <Badge dot={false}>
+                  编辑
+                </Badge>
+                  </div>
                 </div>,
                 <div onClick={this.showArticles.bind(this, club.id)}><Icon style={{ fontSize: 20 }} type="tags" />
-                  <div style={{ fontSize: 8 }}>新闻</div>
+                  <div style={{ fontSize: 8 }}>
+                  <Badge dot={false}>
+                  新闻
+                </Badge>
+                  </div>
                 </div>,
                 <div onClick={this.showActivities.bind(this, club.id)}><Icon style={{ fontSize: 20 }}
                   type="calendar" />
-                  <div style={{ fontSize: 8 }}>活动</div>
+                  <div style={{ fontSize: 8 }}>
+                  <Badge dot={false}>
+                  申请
+                </Badge>
+                  </div>
                 </div>] :
                 []
           return <Card className={'club-card'} key={index}
@@ -402,11 +413,6 @@ export class ClubPanel extends React.Component {
           }
           let actions =
             user.role == 'root' ? [
-              <div onClick={this.showActivities.bind(this, club.id)}><Icon style={{ fontSize: 20 }} type="edit" />
-                <div style={{ fontSize: 8 }}><Badge dot={club.unevaluated}>
-                  评价
-                  </Badge></div>
-              </div>,
               <div onClick={this.showArticles.bind(this, club.id)}><Icon style={{ fontSize: 20 }} type="tags" />
                 <div style={{ fontSize: 8 }}>
                   <Badge dot={false}>
@@ -418,20 +424,32 @@ export class ClubPanel extends React.Component {
                 type="calendar" />
                 <div style={{ fontSize: 8 }}>
                   <Badge dot={club.applying}>
-                    申请
+                    活动
                   </Badge>
                 </div>
               </div>] :
               user.role = 'admin' ? [
                 <div onClick={this.editClub.bind(this, club.id)}><Icon style={{ fontSize: 20 }} type="edit" />
-                  <div style={{ fontSize: 8 }}>编辑</div>
+                  <div style={{ fontSize: 8 }}>
+                  <Badge dot={false}>
+                  编辑
+                </Badge>
+                  </div>
                 </div>,
                 <div onClick={this.showArticles.bind(this, club.id)}><Icon style={{ fontSize: 20 }} type="tags" />
-                  <div style={{ fontSize: 8 }}>新闻</div>
+                  <div style={{ fontSize: 8 }}>
+                  <Badge dot={false}>
+                  新闻
+                </Badge>
+                  </div>
                 </div>,
                 <div onClick={this.showActivities.bind(this, club.id)}><Icon style={{ fontSize: 20 }}
                   type="calendar" />
-                  <div style={{ fontSize: 8 }}>活动</div>
+                  <div style={{ fontSize: 8 }}>
+                  <Badge dot={false}>
+                  申请
+                </Badge>
+                  </div>
                 </div>] :
                 []
           return <Card className={'club-card'} key={index}
@@ -451,11 +469,6 @@ export class ClubPanel extends React.Component {
           }
           let actions =
             user.role == 'root' ? [
-              <div onClick={this.showActivities.bind(this, club.id)}><Icon style={{ fontSize: 20 }} type="edit" />
-                <div style={{ fontSize: 8 }}><Badge dot={club.unevaluated}>
-                  评价
-                  </Badge></div>
-              </div>,
               <div onClick={this.showArticles.bind(this, club.id)}><Icon style={{ fontSize: 20 }} type="tags" />
                 <div style={{ fontSize: 8 }}>
                   <Badge dot={false}>
@@ -467,20 +480,32 @@ export class ClubPanel extends React.Component {
                 type="calendar" />
                 <div style={{ fontSize: 8 }}>
                   <Badge dot={club.applying}>
-                    申请
+                    活动
                   </Badge>
                 </div>
               </div>] :
               user.role = 'admin' ? [
                 <div onClick={this.editClub.bind(this, club.id)}><Icon style={{ fontSize: 20 }} type="edit" />
-                  <div style={{ fontSize: 8 }}>编辑</div>
+                  <div style={{ fontSize: 8 }}>
+                  <Badge dot={false}>
+                  编辑
+                </Badge>
+                  </div>
                 </div>,
                 <div onClick={this.showArticles.bind(this, club.id)}><Icon style={{ fontSize: 20 }} type="tags" />
-                  <div style={{ fontSize: 8 }}>新闻</div>
+                  <div style={{ fontSize: 8 }}>
+                  <Badge dot={false}>
+                  新闻
+                </Badge>
+                  </div>
                 </div>,
                 <div onClick={this.showActivities.bind(this, club.id)}><Icon style={{ fontSize: 20 }}
                   type="calendar" />
-                  <div style={{ fontSize: 8 }}>活动</div>
+                  <div style={{ fontSize: 8 }}>
+                  <Badge dot={false}>
+                  申请
+                </Badge>
+                  </div>
                 </div>] :
                 []
           return <Card className={'club-card'} key={index}
@@ -500,11 +525,6 @@ export class ClubPanel extends React.Component {
           }
           let actions =
             user.role == 'root' ? [
-              <div onClick={this.showActivities.bind(this, club.id)}><Icon style={{ fontSize: 20 }} type="edit" />
-                <div style={{ fontSize: 8 }}><Badge dot={club.unevaluated}>
-                  评价
-                  </Badge></div>
-              </div>,
               <div onClick={this.showArticles.bind(this, club.id)}><Icon style={{ fontSize: 20 }} type="tags" />
                 <div style={{ fontSize: 8 }}>
                   <Badge dot={false}>
@@ -516,20 +536,32 @@ export class ClubPanel extends React.Component {
                 type="calendar" />
                 <div style={{ fontSize: 8 }}>
                   <Badge dot={club.applying}>
-                    申请
+                    活动
                   </Badge>
                 </div>
               </div>] :
               user.role = 'admin' ? [
                 <div onClick={this.editClub.bind(this, club.id)}><Icon style={{ fontSize: 20 }} type="edit" />
-                  <div style={{ fontSize: 8 }}>编辑</div>
+                  <div style={{ fontSize: 8 }}>
+                  <Badge dot={false}>
+                  编辑
+                </Badge>
+                  </div>
                 </div>,
                 <div onClick={this.showArticles.bind(this, club.id)}><Icon style={{ fontSize: 20 }} type="tags" />
-                  <div style={{ fontSize: 8 }}>新闻</div>
+                  <div style={{ fontSize: 8 }}>
+                  <Badge dot={false}>
+                  新闻
+                </Badge>
+                  </div>
                 </div>,
                 <div onClick={this.showActivities.bind(this, club.id)}><Icon style={{ fontSize: 20 }}
                   type="calendar" />
-                  <div style={{ fontSize: 8 }}>活动</div>
+                  <div style={{ fontSize: 8 }}>
+                  <Badge dot={false}>
+                  申请
+                </Badge>
+                  </div>
                 </div>] :
                 []
           return <Card className={'club-card'} key={index}
@@ -550,22 +582,28 @@ export class ClubPanel extends React.Component {
       <div className={'club-container'}>
         <Button onClick={() => {
           let newRole = 'admin'
-          if (this.state.user.role != 'root') {
-            newRole = 'root'
-          }
           this.setState({
             user: { role: newRole }
           })
-        }}>root/admin</Button>
+        }}>社长</Button>
         <Button onClick={() => {
-          let newSort = false
-          if (this.state.needSort != true) {
-            newSort = true
-          }
+          let newRole = 'root'
+          this.setState({
+            user: { role: newRole }
+          })
+        }}>社联</Button>
+        <Button onClick={() => {
+          let newSort = true
           this.setState({
             needSort: newSort
           })
-        }}>排序/不排序</Button>
+        }}>排序</Button>
+        <Button onClick={() => {
+          let newSort = false
+          this.setState({
+            needSort: newSort
+          })
+        }}>复原</Button>
         <ClubActivityForm
           wrappedComponentRef={this.saveFormRef}
           visible={this.state.editVisible}
