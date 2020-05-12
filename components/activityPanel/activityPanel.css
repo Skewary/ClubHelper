@@ -1,0 +1,28 @@
+.activity-container {
+  height: 550px;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  overflow-x: hidden;
+  overflow-y: auto;
+  justify-content: center;
+  align-items: center;
+}
+
+.activity-card {
+  width: 352px;
+  margin: 25px;
+}
+
+.activity-button-wrap {
+  position: fixed;
+  top: 150px;
+  display: flex;
+  width: 700px;
+  justify-content: center;
+  z-index: 999;
+}
+
+.activity-button {
+  margin: 0 20px;
+}
