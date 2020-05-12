@@ -1,15 +1,15 @@
 .club-container {
-    height: 550px;
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    overflow-x: hidden;
-    overflow-y: auto;
-    justify-content: center;
-    align-items: center;
+  height: 550px;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  overflow-x: hidden;
+  overflow-y: auto;
+  justify-content: center;
+  align-items: center;
 }
 
 .club-card {
-    width: 177px;
-    margin: 25px;
+  width: 177px;
+  margin: 25px;
 }
