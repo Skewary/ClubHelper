@@ -1,28 +1,28 @@
 .article-container {
-    height: 550px;
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    overflow-x: hidden;
-    overflow-y: auto;
-    justify-content: center;
-    align-items: center;
+  height: 550px;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  overflow-x: hidden;
+  overflow-y: auto;
+  justify-content: center;
+  align-items: center;
 }
 
 .article-card {
-    width: 352px;
-    margin: 25px;
+  width: 352px;
+  margin: 25px;
 }
 
 .article-button-wrap {
-    position: fixed;
-    top: 150px;
-    display: flex;
-    width: 700px;
-    justify-content: center;
-    z-index: 999;
+  position: fixed;
+  top: 150px;
+  display: flex;
+  width: 700px;
+  justify-content: center;
+  z-index: 999;
 }
 
 .article-button {
-    margin: 0 20px;
+  margin: 0 20px;
 }
