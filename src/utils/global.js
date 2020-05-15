@@ -1,4 +1,5 @@
 //const baseUrl = 'https://admin.software.questionor.cn/api'
+//const baseUrl = 'http://localhost/api'
 const baseUrl = 'http://114.115.141.131/api'
 //const baseUrl = ''
 const headers = {
@@ -6,6 +7,8 @@ const headers = {
 }
 
 export function $get(url) {
+  console.log('get:')
+  console.log(url)
   return fetch(baseUrl + url, {
     credentials: 'include',
     headers: headers,
@@ -14,9 +17,9 @@ export function $get(url) {
 }
 
 export function $post(url, data) {
-  //console.log('post:')
-  //console.log(url)
-  //console.log(data)
+  console.log('post:')
+  console.log(url)
+  console.log(data)
   return fetch(baseUrl + url, {
     credentials: 'include',
     headers: headers,
@@ -26,6 +29,9 @@ export function $post(url, data) {
 }
 
 export function $put(url, data) {
+  console.log('put:')
+  console.log(url)
+  console.log(data)
   return fetch(baseUrl + url, {
     credentials: 'include',
     headers: headers,
@@ -35,6 +41,8 @@ export function $put(url, data) {
 }
 
 export function $delete(url) {
+  console.log('post:')
+  console.log(url)
   return fetch(baseUrl + url, {
     credentials: 'include',
     headers: headers,
