@@ -35,12 +35,12 @@ class ActivitiesControllerTest < ActionDispatch::IntegrationTest
     User.all.each do |user|
       user.pro_activity(activity1)
     end
-    count -= 1
+    count -= 2  # 共3个user，三个关注1，两个关注2，一个关注3
     User.all[0..count].each do |user|
       user.pro_activity(activity2)
     end
     count -= 1
-    User.all.each do |user|
+    User.all[0..count].each do |user|
       user.pro_activity(activity3)
     end
     get activities_hot_list_path, params: {count: 3}

@@ -7,10 +7,11 @@ basketball:
   position: MyString
   description: MyText
   max_people_limit: 1
-  range_category: 2
+#  range_category: 2
   need_enroll: true
-  post_horizontal_picture_url: "/img"
-  post_vertical_picture_url: "/img"
+  review_state: 0
+ # post_horizontal_picture_url: "/img"
+#  post_vertical_picture_url: "/img"
 
 singer:
   name: 十大歌手
@@ -19,10 +20,11 @@ singer:
   position: MyString
   description: MyText
   max_people_limit: 1
-  range_category: 2
+ # range_category: 2
   need_enroll: true
-  post_horizontal_picture_url: "/img"
-  post_vertical_picture_url: "/img"
+  review_state: 1
+  #post_horizontal_picture_url: "/img"
+ # post_vertical_picture_url: "/img"
 
 
 badminton:
@@ -32,10 +34,11 @@ badminton:
   position: MyString
   description: MyText
   max_people_limit: 1
-  range_category: 2
+ # range_category: 2
   need_enroll: true
-  post_horizontal_picture_url: "/img"
-  post_vertical_picture_url: "/img"
+  review_state: 1 
+# post_horizontal_picture_url: "/img"
+ # post_vertical_picture_url: "/img"
 
 badminton2:
   name: 羽毛球赛2
@@ -44,10 +47,11 @@ badminton2:
   position: MyString
   description: MyText
   max_people_limit: 1
-  range_category: 2
+ # range_category: 2
   need_enroll: true
-  post_horizontal_picture_url: "/img"
-  post_vertical_picture_url: "/img"
+  review_state: 0 
+# post_horizontal_picture_url: "/img"
+ # post_vertical_picture_url: "/img"
 
 code:
   name: 编程比赛
@@ -56,7 +60,8 @@ code:
   position: MyString
   description: MyText
   max_people_limit: 1
-  range_category: 2
+ # range_category: 2
   need_enroll: true
-  post_horizontal_picture_url: "/img"
-  post_vertical_picture_url: "/img"
+  review_state: 1
+ # post_horizontal_picture_url: "/img"
+ # post_vertical_picture_url: "/img"

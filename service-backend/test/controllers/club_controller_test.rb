@@ -17,7 +17,7 @@ class ClubControllerTest < ActionDispatch::IntegrationTest
     club = clubs(:microsoft)
     get clubs_brief_information_path(club.id)
     assert_response 200
-    assert_match "微软", @response.body
+    assert_match "mf_club", @response.body
   end
 
   test "should return follow list" do
@@ -25,7 +25,7 @@ class ClubControllerTest < ActionDispatch::IntegrationTest
     assert_response 200
     #puts @user.followed_clubs
     #匹配正则表达式
-    assert_match "阿卡贝拉", @response.body
+    assert_match "acapella_club", @response.body
   end
 
   test "should get information" do
