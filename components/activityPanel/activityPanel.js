@@ -12,7 +12,9 @@ import {
   Col,
   Row,
   Button,
-  Form,
+  Table,
+    Pagination,
+    Form,
   Input,
   Radio,
   InputNumber, Checkbox, Select,
@@ -20,7 +22,9 @@ import {
   message
 } from 'antd'
 
-import { Rate } from 'antd';
+import Highlighter from 'react-highlight-words';
+import { SearchOutlined } from '@ant-design/icons';
+
 import './activityPanel.css'
 
 import { Empty } from 'antd'
@@ -56,6 +60,10 @@ const DescriptionItem = ({ title, content }) => (
     {content}
   </div>
 )
+
+function handleChange(value) {
+    console.log(value); // { key: "lucy", label: "Lucy (101)" }
+}
 
 const ActivityUpdateForm = Form.create({ name: 'activity_update' })(
   // eslint-disable-next-line
@@ -94,12 +102,142 @@ const ActivityUpdateForm = Form.create({ name: 'activity_update' })(
               })(<Input disabled />)}
             </Form.Item>
             <Form.Item label="活动地点">
-              {getFieldDecorator('position', {
-                initialValue: activity.place,
-                rules: [{ required: true, message: '请输入活动地点' }],
-              })(<Input />)}
+                {getFieldDecorator('position', {
+                    initialValue: activity.place,
+                    rules: [
+                        { required: true, message: '请选择活动地点' },
+                    ],
+                })(
+                    <Select placeholder="请选择活动地点">
+                        <Select.Option value="沙河-百米跑廊">沙河-百米跑廊</Select.Option>
+                        <Select.Option value="沙河-大钟广场">沙河-大钟广场</Select.Option>
+                        <Select.Option value="沙河-j1三楼电梯间">沙河-j1三楼电梯间</Select.Option>
+                        <Select.Option value="沙河-j1四楼电梯间">沙河-j1四楼电梯间</Select.Option>
+                        <Select.Option value="沙河-操场">沙河-操场</Select.Option>
+                        <Select.Option value="沙河-网球场">沙河-网球场</Select.Option>
+                        <Select.Option value="沙河-四公寓一楼">沙河-四公寓一楼</Select.Option>
+                        <Select.Option value="沙河-体育馆三楼羽毛球">沙河-体育馆三楼羽毛球</Select.Option>
+                        <Select.Option value="沙河-体育馆三楼乒乓球">沙河-体育馆三楼乒乓球</Select.Option>
+                        <Select.Option value="沙河-足球场">沙河-足球场</Select.Option>
+                        <Select.Option value="沙河-b0-009">沙河-b0-009</Select.Option>
+                        <Select.Option value="沙河-b0-011">沙河-b0-011</Select.Option>
+                        <Select.Option value="沙河-雄鹰领飞会议室">沙河-雄鹰领飞会议室</Select.Option>
+                        <Select.Option value="沙河-导办小会议室">沙河-导办小会议室</Select.Option>
+                        <Select.Option value="本部-体育馆217">本部-体育馆217</Select.Option>
+                        <Select.Option value="本部-体育馆148">本部-体育馆148</Select.Option>
+                        <Select.Option value="本部-健美操厅">本部-健美操厅</Select.Option>
+                        <Select.Option value="本部-百米跑廊1">本部-百米跑廊1</Select.Option>
+                        <Select.Option value="本部-百米跑廊2">本部-百米跑廊2</Select.Option>
+                        <Select.Option value="本部-百米跑廊3">本部-百米跑廊3</Select.Option>
+                        <Select.Option value="本部-体育馆平台1">本部-体育馆平台1</Select.Option>
+                        <Select.Option value="本部-体育馆平台2">本部-体育馆平台2</Select.Option>
+                        <Select.Option value="本部-羽毛球训练馆">本部-羽毛球训练馆</Select.Option>
+                        <Select.Option value="本部-小足球场">本部-小足球场</Select.Option>
+                        <Select.Option value="本部-乒乓球馆">本部-乒乓球馆</Select.Option>
+                        <Select.Option value="本部-室外羽毛球场">本部-室外羽毛球场</Select.Option>
+                        <Select.Option value="本部-逸夫楼前">本部-逸夫楼前</Select.Option>
+                        <Select.Option value="本部-操场以及老主楼空地">本部-操场以及老主楼空地</Select.Option>
+                        <Select.Option value="本部-知行北楼113">本部-知行北楼113</Select.Option>
+                    </Select>
+                )}
             </Form.Item>
-            <Form.Item label="活动描述">
+
+              <Form.Item label="场地使用日期">
+                  {getFieldDecorator('date', {
+                      rules: [
+                          { required: true, message: '请选择场地使用日期' },
+                      ],
+                  })(
+                      <Select >
+                          <Select.Option value="2020-6-1">2020-6-1</Select.Option>
+                          <Select.Option value="2020-6-2">2020-6-2</Select.Option>
+                          <Select.Option value="2020-6-3">2020-6-3</Select.Option>
+                          <Select.Option value="2020-6-4">2020-6-4</Select.Option>
+                          <Select.Option value="2020-6-5">2020-6-5</Select.Option>
+                          <Select.Option value="2020-6-6">2020-6-6</Select.Option>
+                          <Select.Option value="2020-6-7">2020-6-7</Select.Option>
+                          <Select.Option value="2020-6-8">2020-6-8</Select.Option>
+                          <Select.Option value="2020-6-9">2020-6-9</Select.Option>
+                          <Select.Option value="2020-6-10">2020-6-10</Select.Option>
+                          <Select.Option value="2020-6-11">2020-6-11</Select.Option>
+                          <Select.Option value="2020-6-12">2020-6-12</Select.Option>
+                          <Select.Option value="2020-6-13">2020-6-13</Select.Option>
+                          <Select.Option value="2020-6-14">2020-6-14</Select.Option>
+                          <Select.Option value="2020-6-15">2020-6-15</Select.Option>
+                          <Select.Option value="2020-6-16">2020-6-16</Select.Option>
+                          <Select.Option value="2020-6-17">2020-6-17</Select.Option>
+                          <Select.Option value="2020-6-18">2020-6-18</Select.Option>
+                          <Select.Option value="2020-6-19">2020-6-19</Select.Option>
+                          <Select.Option value="2020-6-20">2020-6-20</Select.Option>
+                          <Select.Option value="2020-6-21">2020-6-21</Select.Option>
+                          <Select.Option value="2020-6-22">2020-6-22</Select.Option>
+                          <Select.Option value="2020-6-23">2020-6-23</Select.Option>
+                          <Select.Option value="2020-6-24">2020-6-24</Select.Option>
+                          <Select.Option value="2020-6-25">2020-6-25</Select.Option>
+                          <Select.Option value="2020-6-26">2020-6-26</Select.Option>
+                          <Select.Option value="2020-6-27">2020-6-27</Select.Option>
+                          <Select.Option value="2020-6-28">2020-6-28</Select.Option>
+                          <Select.Option value="2020-6-29">2020-6-29</Select.Option>
+                          <Select.Option value="2020-6-30">2020-6-30</Select.Option>
+                      </Select>
+                  )}
+              </Form.Item>
+
+              <Form.Item label="场地使用开始时间">
+                  {getFieldDecorator('begin-time', {
+                      rules: [
+                          { required: true, message: '请选择场地使用开始时间' },
+                      ],
+                  })(
+                      <Select >
+                          <Select.Option value="8:00">8:00</Select.Option>
+                          <Select.Option value="9:00">9:00</Select.Option>
+                          <Select.Option value="10:00">10:00</Select.Option>
+                          <Select.Option value="11:00">11:00</Select.Option>
+                          <Select.Option value="12:00">12:00</Select.Option>
+                          <Select.Option value="13:00">13:00</Select.Option>
+                          <Select.Option value="14:00">14:00</Select.Option>
+                          <Select.Option value="15:00">15:00</Select.Option>
+                          <Select.Option value="16:00">16:00</Select.Option>
+                          <Select.Option value="17:00">17:00</Select.Option>
+                          <Select.Option value="18:00">18:00</Select.Option>
+                          <Select.Option value="19:00">19:00</Select.Option>
+                          <Select.Option value="20:00">20:00</Select.Option>
+                          <Select.Option value="21:00">21:00</Select.Option>
+                          <Select.Option value="22:00">22:00</Select.Option>
+                      </Select>
+                  )}
+              </Form.Item>
+
+              <Form.Item label="场地使用结束时间">
+                  {getFieldDecorator('end-time', {
+                      rules: [
+                          { required: true, message: '请选择场地使用结束时间' },
+                      ],
+                  })(
+                      <Select >
+                          <Select.Option value="8:00">8:00</Select.Option>
+                          <Select.Option value="9:00">9:00</Select.Option>
+                          <Select.Option value="10:00">10:00</Select.Option>
+                          <Select.Option value="11:00">11:00</Select.Option>
+                          <Select.Option value="12:00">12:00</Select.Option>
+                          <Select.Option value="13:00">13:00</Select.Option>
+                          <Select.Option value="14:00">14:00</Select.Option>
+                          <Select.Option value="15:00">15:00</Select.Option>
+                          <Select.Option value="16:00">16:00</Select.Option>
+                          <Select.Option value="17:00">17:00</Select.Option>
+                          <Select.Option value="18:00">18:00</Select.Option>
+                          <Select.Option value="19:00">19:00</Select.Option>
+                          <Select.Option value="20:00">20:00</Select.Option>
+                          <Select.Option value="21:00">21:00</Select.Option>
+                          <Select.Option value="22:00">22:00</Select.Option>
+                      </Select>
+                  )}
+              </Form.Item>
+
+
+
+              <Form.Item label="活动描述">
               {getFieldDecorator('description', {
                 initialValue: activity.description,
                 rules: [{ required: true, message: '请输入活动描述' }],
@@ -216,11 +354,139 @@ const ActivityCreateForm = Form.create({ name: 'activity_create' })(
               )(<Input placeholder={'新建活动后，活动名称将不可修改'} />)}
             </Form.Item>
             <Form.Item label="活动地点">
-              {getFieldDecorator('position', {
-                rules: [{ required: true, message: '请输入活动地点' }],
-              })(<Input />)}
+                {getFieldDecorator('position', {
+                rules: [
+                    { required: true, message: '请选择活动地点' },
+                ],
+            })(
+                <Select >
+                    <Select.Option value="沙河-百米跑廊">沙河-百米跑廊</Select.Option>
+                    <Select.Option value="沙河-大钟广场">沙河-大钟广场</Select.Option>
+                    <Select.Option value="沙河-j1三楼电梯间">沙河-j1三楼电梯间</Select.Option>
+                    <Select.Option value="沙河-j1四楼电梯间">沙河-j1四楼电梯间</Select.Option>
+                    <Select.Option value="沙河-操场">沙河-操场</Select.Option>
+                    <Select.Option value="沙河-网球场">沙河-网球场</Select.Option>
+                    <Select.Option value="沙河-四公寓一楼">沙河-四公寓一楼</Select.Option>
+                    <Select.Option value="沙河-体育馆三楼羽毛球">沙河-体育馆三楼羽毛球</Select.Option>
+                    <Select.Option value="沙河-体育馆三楼乒乓球">沙河-体育馆三楼乒乓球</Select.Option>
+                    <Select.Option value="沙河-足球场">沙河-足球场</Select.Option>
+                    <Select.Option value="沙河-b0-009">沙河-b0-009</Select.Option>
+                    <Select.Option value="沙河-b0-011">沙河-b0-011</Select.Option>
+                    <Select.Option value="沙河-雄鹰领飞会议室">沙河-雄鹰领飞会议室</Select.Option>
+                    <Select.Option value="沙河-导办小会议室">沙河-导办小会议室</Select.Option>
+                    <Select.Option value="本部-体育馆217">本部-体育馆217</Select.Option>
+                    <Select.Option value="本部-体育馆148">本部-体育馆148</Select.Option>
+                    <Select.Option value="本部-健美操厅">本部-健美操厅</Select.Option>
+                    <Select.Option value="本部-百米跑廊1">本部-百米跑廊1</Select.Option>
+                    <Select.Option value="本部-百米跑廊2">本部-百米跑廊2</Select.Option>
+                    <Select.Option value="本部-百米跑廊3">本部-百米跑廊3</Select.Option>
+                    <Select.Option value="本部-体育馆平台1">本部-体育馆平台1</Select.Option>
+                    <Select.Option value="本部-体育馆平台2">本部-体育馆平台2</Select.Option>
+                    <Select.Option value="本部-羽毛球训练馆">本部-羽毛球训练馆</Select.Option>
+                    <Select.Option value="本部-小足球场">本部-小足球场</Select.Option>
+                    <Select.Option value="本部-乒乓球馆">本部-乒乓球馆</Select.Option>
+                    <Select.Option value="本部-室外羽毛球场">本部-室外羽毛球场</Select.Option>
+                    <Select.Option value="本部-逸夫楼前">本部-逸夫楼前</Select.Option>
+                    <Select.Option value="本部-操场以及老主楼空地">本部-操场以及老主楼空地</Select.Option>
+                    <Select.Option value="本部-知行北楼113">本部-知行北楼113</Select.Option>
+                </Select>
+            )}
             </Form.Item>
-            <Form.Item label="活动描述">
+
+              <Form.Item label="场地使用日期">
+                  {getFieldDecorator('date', {
+                      rules: [
+                          { required: true, message: '请选择场地使用日期' },
+                      ],
+                  })(
+                      <Select >
+                          <Select.Option value="2020-6-1">2020-6-1</Select.Option>
+                          <Select.Option value="2020-6-2">2020-6-2</Select.Option>
+                          <Select.Option value="2020-6-3">2020-6-3</Select.Option>
+                          <Select.Option value="2020-6-4">2020-6-4</Select.Option>
+                          <Select.Option value="2020-6-5">2020-6-5</Select.Option>
+                          <Select.Option value="2020-6-6">2020-6-6</Select.Option>
+                          <Select.Option value="2020-6-7">2020-6-7</Select.Option>
+                          <Select.Option value="2020-6-8">2020-6-8</Select.Option>
+                          <Select.Option value="2020-6-9">2020-6-9</Select.Option>
+                          <Select.Option value="2020-6-10">2020-6-10</Select.Option>
+                          <Select.Option value="2020-6-11">2020-6-11</Select.Option>
+                          <Select.Option value="2020-6-12">2020-6-12</Select.Option>
+                          <Select.Option value="2020-6-13">2020-6-13</Select.Option>
+                          <Select.Option value="2020-6-14">2020-6-14</Select.Option>
+                          <Select.Option value="2020-6-15">2020-6-15</Select.Option>
+                          <Select.Option value="2020-6-16">2020-6-16</Select.Option>
+                          <Select.Option value="2020-6-17">2020-6-17</Select.Option>
+                          <Select.Option value="2020-6-18">2020-6-18</Select.Option>
+                          <Select.Option value="2020-6-19">2020-6-19</Select.Option>
+                          <Select.Option value="2020-6-20">2020-6-20</Select.Option>
+                          <Select.Option value="2020-6-21">2020-6-21</Select.Option>
+                          <Select.Option value="2020-6-22">2020-6-22</Select.Option>
+                          <Select.Option value="2020-6-23">2020-6-23</Select.Option>
+                          <Select.Option value="2020-6-24">2020-6-24</Select.Option>
+                          <Select.Option value="2020-6-25">2020-6-25</Select.Option>
+                          <Select.Option value="2020-6-26">2020-6-26</Select.Option>
+                          <Select.Option value="2020-6-27">2020-6-27</Select.Option>
+                          <Select.Option value="2020-6-28">2020-6-28</Select.Option>
+                          <Select.Option value="2020-6-29">2020-6-29</Select.Option>
+                          <Select.Option value="2020-6-30">2020-6-30</Select.Option>
+                      </Select>
+                  )}
+              </Form.Item>
+
+              <Form.Item label="场地使用开始时间">
+                  {getFieldDecorator('begin-time', {
+                      rules: [
+                          { required: true, message: '请选择场地使用开始时间' },
+                      ],
+                  })(
+                      <Select >
+                          <Select.Option value="8:00">8:00</Select.Option>
+                          <Select.Option value="9:00">9:00</Select.Option>
+                          <Select.Option value="10:00">10:00</Select.Option>
+                          <Select.Option value="11:00">11:00</Select.Option>
+                          <Select.Option value="12:00">12:00</Select.Option>
+                          <Select.Option value="13:00">13:00</Select.Option>
+                          <Select.Option value="14:00">14:00</Select.Option>
+                          <Select.Option value="15:00">15:00</Select.Option>
+                          <Select.Option value="16:00">16:00</Select.Option>
+                          <Select.Option value="17:00">17:00</Select.Option>
+                          <Select.Option value="18:00">18:00</Select.Option>
+                          <Select.Option value="19:00">19:00</Select.Option>
+                          <Select.Option value="20:00">20:00</Select.Option>
+                          <Select.Option value="21:00">21:00</Select.Option>
+                          <Select.Option value="22:00">22:00</Select.Option>
+                      </Select>
+                  )}
+              </Form.Item>
+
+              <Form.Item label="场地使用结束时间">
+                  {getFieldDecorator('end-time', {
+                      rules: [
+                          { required: true, message: '请选择场地使用结束时间' },
+                      ],
+                  })(
+                      <Select >
+                          <Select.Option value="8:00">8:00</Select.Option>
+                          <Select.Option value="9:00">9:00</Select.Option>
+                          <Select.Option value="10:00">10:00</Select.Option>
+                          <Select.Option value="11:00">11:00</Select.Option>
+                          <Select.Option value="12:00">12:00</Select.Option>
+                          <Select.Option value="13:00">13:00</Select.Option>
+                          <Select.Option value="14:00">14:00</Select.Option>
+                          <Select.Option value="15:00">15:00</Select.Option>
+                          <Select.Option value="16:00">16:00</Select.Option>
+                          <Select.Option value="17:00">17:00</Select.Option>
+                          <Select.Option value="18:00">18:00</Select.Option>
+                          <Select.Option value="19:00">19:00</Select.Option>
+                          <Select.Option value="20:00">20:00</Select.Option>
+                          <Select.Option value="21:00">21:00</Select.Option>
+                          <Select.Option value="22:00">22:00</Select.Option>
+                      </Select>
+                  )}
+              </Form.Item>
+
+              <Form.Item label="活动描述">
               {getFieldDecorator('description', {
                 rules: [{ required: true, message: '请输入活动描述' }],
               })(<Input.TextArea rows={5} />)}
@@ -323,7 +589,7 @@ const ActivityReviewForm = Form.create({ name: 'activity_review' })(
             </Form.Item>
             <Form.Item label="活动地点">
               {getFieldDecorator('position', {
-                initialValue: activity.place 
+                initialValue: activity.place
               })(<Input disabled/>)}
             </Form.Item>
             <Form.Item label="活动描述">
@@ -474,7 +740,7 @@ export class ActivityPanel extends React.Component {
       detailVisible: false,
       detail: {},
       pass: false,
-      user: {role: "admin" }//admin 社长 root 社联
+      user: {role: "admin" },//admin 社长 root 社联
     }
   }
 
@@ -876,7 +1142,8 @@ export class ActivityPanel extends React.Component {
       activitiesView = <Empty />
     }
     return (
-      <div className={'activity-container'}> 
+      <div className={'activity-container'}>
+
         {user.role === 'admin' ? [
           <div className={'article-button-wrap'}>
             <Button className={'activity-button'} onClick={this.goBack.bind(this)} shape={'circle'} icon={'left'}
@@ -930,7 +1197,7 @@ export class ActivityPanel extends React.Component {
               <DescriptionItem title="活动名称" content={detail.name} />
             </Col>
             <Col span={12}>
-              <DescriptionItem title="活动地点" content={detail.position} />
+              <DescriptionItem title="活动地点" content={detail.place} />
             </Col>
           </Row>
           <Row>

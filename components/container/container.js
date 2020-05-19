@@ -6,6 +6,7 @@ import PrivateRoute from '../../components/privateRoute/privateRoute'
 
 import './container.css'
 import {ActivityPanel} from '../activityPanel/activityPanel'
+import {getspace} from '../getspace/getspace'
 import {$delete} from '../../utils/global'
 import {ArticlePanel} from '../articlePanel/articlePanel'
 
@@ -22,6 +23,10 @@ export class Container extends React.Component {
     })
   }
 
+  gotospace(){
+      this.props.history.push('/admin/space')
+  }
+
   render() {
     let {match} = this.props
     return (
@@ -36,6 +41,7 @@ export class Container extends React.Component {
           >
             <Menu.Item onClick={this.gotoIndex.bind(this)} key="1">主页</Menu.Item>
             <Menu.Item onClick={this.logout.bind(this)} key="2">登出</Menu.Item>
+            <Menu.Item onClick={this.gotospace.bind(this)} key="3">场地查询</Menu.Item>
           </Menu>
         </Header>
         <Content style={{padding: '0 50px'}}>
@@ -47,6 +53,7 @@ export class Container extends React.Component {
           <div style={{background: '#fff', padding: 24}}>
             <Switch>
               <PrivateRoute path={match.url + '/index'} exact component={ClubPanel}/>
+              <PrivateRoute path={match.url + '/space'} exact component={getspace}/>
               <PrivateRoute path={match.url + '/:club_id/activity/index'} exact component={ActivityPanel}/>
               <PrivateRoute path={match.url + '/:club_id/article/index'} exact component={ArticlePanel}/>
               <Redirect to={'/error/404'}/>
