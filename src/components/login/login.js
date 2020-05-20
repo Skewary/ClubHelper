@@ -274,7 +274,8 @@ class RegisterForm extends React.Component {
     const realNameError = isFieldTouched('realName') && getFieldError('realName');
     const studentIdError = isFieldTouched('studentId') && getFieldError('studentId');
     const emailError = isFieldTouched('email') && getFieldError('email');
-
+    const wxidError = isFieldTouched('wxid') && getFieldError('wxid');
+    
     return (
       <Form onSubmit={this.handleSubmit}>
         <Form.Item validateStatus={usernameError ? 'error' : ''} help={usernameError || ''}>
@@ -284,6 +285,16 @@ class RegisterForm extends React.Component {
             <Input
               prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
               placeholder="Username"
+            />,
+          )}
+        </Form.Item>
+        <Form.Item validateStatus={wxidError ? 'error' : ''} help={wxidError || ''}>
+          {getFieldDecorator('wxid', {
+            rules: [{ required: true, message: 'Please input your wechat number!' }],
+          })(
+            <Input
+              prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
+              placeholder="WeChat Number"
             />,
           )}
         </Form.Item>
