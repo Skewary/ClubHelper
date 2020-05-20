@@ -36,6 +36,10 @@ export class Login extends React.Component {
       })
     })
   }
+  componentWillUnmount(){
+    console.log('login.js unmount')
+    clearInterval(this.interval)
+  }
 
   listen() {
     let { uuid } = this.state
