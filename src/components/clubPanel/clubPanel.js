@@ -217,16 +217,25 @@ export class ClubPanel extends React.Component {
   }
 
   editClub(id) {
+    console.log('editClub was called')
     this.setState({
       detail: {}
     }, () => {
       $get('/clubs/admin/' + id).then(res => {
+        console.log("res:")
+        console.log(res)
+
+        let tmpClub = res.data.club
+        tmpClub.tags = [tmpClub["tags"][1],tmpClub["tags"][2],tmpClub["tags"][3]]
+
         if (res.success) {
+          console.log('success')
           this.setState({
             editVisible: true,
-            detail: res.data.club
+            detail: tmpClub
           })
         }
+        console.log('end')
       })
     })
   }
