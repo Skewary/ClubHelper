@@ -786,7 +786,7 @@ export class getspace extends React.Component {
         const {loading, selectedRowKeys} = this.state;
 
         const Pagination = {
-            defaultPageSize: 7
+            defaultPageSize: 70
         };
 
         const hasSelected = selectedRowKeys.length > 0;
@@ -801,7 +801,7 @@ export class getspace extends React.Component {
                 {hasSelected ? `Selected ${selectedRowKeys.length} items` : ''}
                 </span>
                 </div>
-                <Table rowSelection={rowSelection} columns={columns} dataSource={data} pagination={Pagination}/>
+                <Table rowSelection={rowSelection} columns={columns} dataSource={data} pagination={Pagination} scroll={{ y: 400 }}/>
             </div>
 
         );

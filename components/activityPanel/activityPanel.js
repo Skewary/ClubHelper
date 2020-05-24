@@ -937,101 +937,167 @@ export class ActivityPanel extends React.Component {
     const { clubId } = this.state
     const form = this.updateFormRef.props.form
     form.validateFields((err, values) => {
-      if (err) {
-        return
-      }
-      const activityId = this.state.detail.id
-      const { detail } = this.state
-
-      let post_horizontal_image_token = values.post_horizontal_image && values.post_horizontal_image.length > 0 ?
-        values.post_horizontal_image[0].response.data.token : null
-      let post_vertical_image_token = values.post_vertical_image && values.post_vertical_image.length > 0 ?
-        values.post_vertical_image[0].response.data.token : null
-
-      $put('/clubs/admin/' + clubId + '/activity/' + activityId + '/update',{
-        position: values.position,
-        act_date:values.act_date,
-        beg_time:values.beg_time,
-        fin_time:values.fin_time,
-        description: values.description,
-        start_time: (!!values.start_time ? values.start_time.format('YYYY-MM-DD HH:mm:ss') : undefined) || detail.start_time,
-        end_time: (!!values.end_time ? values.end_time.format('YYYY-MM-DD HH:mm:ss') : undefined) || detail.end_time,
-        post_horizontal_image_token: post_horizontal_image_token,
-        post_vertical_image_token: post_vertical_image_token,
-        introduction_article_title: values.introduction_article_title,
-        introduction_article_url: values.introduction_article_url,
-        retrospect_article_title: values.retrospect_article_title,
-        retrospect_article_url: values.retrospect_article_url,
-        max_people_limit: values.max_people_limit,
-        need_enroll: values.need_enroll,
-        host_clubs: values.host_clubs,
-        activity_pdf: values.activity_pdf
-      }).then((res) => {
-        if (!res.success) {
-          Modal.confirm({
-            title: '活动信息更新失败',
-            content: '请检查您的输入后重试',
-            okText: '我知道了',
-            cancelText: '好的'
-          })
-        } else {
-          this.setState({ editVisible: false }, () => {
-            form.resetFields()
-            this.refresh()
-          })
+        if (err) {
+            return
         }
-      })
+        const activityId = this.state.detail.id
+        const {detail} = this.state
+
+        let post_horizontal_image_token = values.post_horizontal_image && values.post_horizontal_image.length > 0 ?
+            values.post_horizontal_image[0].response.data.token : null
+        let post_vertical_image_token = values.post_vertical_image && values.post_vertical_image.length > 0 ?
+            values.post_vertical_image[0].response.data.token : null
+
+        $get('/activities/pos_time').then(res => {
+            var tag = 0;
+            if (res.success) {
+                let kkk = res.data.pos_time_list;
+                for (let i = 0; i < kkk.length; i++) {
+                    if (values.position == kkk[i].position && values.act_date == kkk[i].act_date) {
+                        if (values.beg_time <= kkk[i].beg_time && values.fin_time >= kkk[i].beg_time) {
+                            Modal.confirm({
+                                title: '活动信息更新失败',
+                                content: '您预订的场地已被他人预约，请选择其他时间或场地',
+                                okText: '我知道了',
+                                cancelText: '好的'
+                            })
+                            tag = 1;
+                            break;
+                        }
+                        if (values.beg_time >= kkk[i].beg_time && values.beg_time < kkk[i].fin_time) {
+                            Modal.confirm({
+                                title: '活动信息更新失败',
+                                content: '您预订的场地已被他人预约，请选择其他时间或场地',
+                                okText: '我知道了',
+                                cancelText: '好的'
+                            })
+                            tag = 1;
+                            break;
+                        }
+                    }
+                }
+                if (tag == 0){
+                    $put('/clubs/admin/' + clubId + '/activity/' + activityId + '/update', {
+                        position: values.position,
+                        act_date: values.act_date,
+                        beg_time: values.beg_time,
+                        fin_time: values.fin_time,
+                        description: values.description,
+                        start_time: (!!values.start_time ? values.start_time.format('YYYY-MM-DD HH:mm:ss') : undefined) || detail.start_time,
+                        end_time: (!!values.end_time ? values.end_time.format('YYYY-MM-DD HH:mm:ss') : undefined) || detail.end_time,
+                        post_horizontal_image_token: post_horizontal_image_token,
+                        post_vertical_image_token: post_vertical_image_token,
+                        introduction_article_title: values.introduction_article_title,
+                        introduction_article_url: values.introduction_article_url,
+                        retrospect_article_title: values.retrospect_article_title,
+                        retrospect_article_url: values.retrospect_article_url,
+                        max_people_limit: values.max_people_limit,
+                        need_enroll: values.need_enroll,
+                        host_clubs: values.host_clubs,
+                        activity_pdf: values.activity_pdf
+                    }).then((res) => {
+                        if (!res.success) {
+                            Modal.confirm({
+                                title: '活动信息更新失败',
+                                content: '请检查您的输入后重试',
+                                okText: '我知道了',
+                                cancelText: '好的'
+                            })
+                        } else {
+                            this.setState({editVisible: false}, () => {
+                                form.resetFields()
+                                this.refresh()
+                            })
+                        }
+                    })
+                }
+            }
+        })
     })
   }
 
   handleCreate = () => {
-    const { clubId } = this.state
-    const form = this.createFormRef.props.form
-    form.validateFields((err, values) => {
-      if (err) {
-        return
-      }
-      let post_horizontal_image_token = values.post_horizontal_image && values.post_horizontal_image.length > 0 ?
-        values.post_horizontal_image[0].response.data.token : null
-      let post_vertical_image_token = values.post_vertical_image && values.post_vertical_image.length > 0 ?
-        values.post_vertical_image[0].response.data.token : null
-      $post('/clubs/admin/' + clubId + '/activity', {
-        name: values.name,
-        position: values.position,
-        act_date:values.act_date,
-        beg_time:values.beg_time,
-        fin_time:values.fin_time,
-        description: values.description,
-        start_time: values.start_time.format('YYYY-MM-DD HH:mm:ss'),
-        end_time: !!values.end_time ? values.end_time.format('YYYY-MM-DD HH:mm:ss') : null,
-        post_horizontal_image_token: post_horizontal_image_token,
-        post_vertical_image_token: post_vertical_image_token,
-        introduction_article_title: values.introduction_article_title,
-        introduction_article_url: values.introduction_article_url,
-        retrospect_article_title: values.retrospect_article_title,
-        retrospect_article_url: values.retrospect_article_url,
-        max_people_limit: values.max_people_limit,
-        need_enroll: values.need_enroll,
-        host_clubs: values.host_clubs,
-        review_state: values.review_state,
-        activity_pdf: values.activity_pdf
-      }).then((res) => {
-        if (!res.success) {
-          Modal.confirm({
-            title: '活动创建失败',
-            content: '请检查您的输入后重试',
-            okText: '我知道了',
-            cancelText: '好的'
+      const {clubId} = this.state
+      const form = this.createFormRef.props.form
+      form.validateFields((err, values) => {
+          if (err) {
+              return
+          }
+          let post_horizontal_image_token = values.post_horizontal_image && values.post_horizontal_image.length > 0 ?
+              values.post_horizontal_image[0].response.data.token : null
+          let post_vertical_image_token = values.post_vertical_image && values.post_vertical_image.length > 0 ?
+              values.post_vertical_image[0].response.data.token : null
+
+          $get('/activities/pos_time').then(res => {
+              var tag = 0;
+              if (res.success) {
+                  let kkk = res.data.pos_time_list;
+                  for (let i = 0; i < kkk.length; i++) {
+                      if (values.position == kkk[i].position && values.act_date == kkk[i].act_date) {
+                          if (values.beg_time <= kkk[i].beg_time && values.fin_time >= kkk[i].beg_time) {
+                              Modal.confirm({
+                                  title: '活动创建失败',
+                                  content: '您预订的场地已被他人预约，请选择其他时间或场地',
+                                  okText: '我知道了',
+                                  cancelText: '好的'
+                              })
+                              tag = 1;
+                              break;
+                          }
+                          if (values.beg_time >= kkk[i].beg_time && values.beg_time < kkk[i].fin_time) {
+                              Modal.confirm({
+                                  title: '活动创建失败',
+                                  content: '您预订的场地已被他人预约，请选择其他时间或场地',
+                                  okText: '我知道了',
+                                  cancelText: '好的'
+                              })
+                              tag = 1;
+                              break;
+                          }
+                      }
+                  }
+                  if (tag == 0) {
+                      $post('/clubs/admin/' + clubId + '/activity', {
+                          name: values.name,
+                          position: values.position,
+                          act_date: values.act_date,
+                          beg_time: values.beg_time,
+                          fin_time: values.fin_time,
+                          description: values.description,
+                          start_time: values.start_time.format('YYYY-MM-DD HH:mm:ss'),
+                          end_time: !!values.end_time ? values.end_time.format('YYYY-MM-DD HH:mm:ss') : null,
+                          post_horizontal_image_token: post_horizontal_image_token,
+                          post_vertical_image_token: post_vertical_image_token,
+                          introduction_article_title: values.introduction_article_title,
+                          introduction_article_url: values.introduction_article_url,
+                          retrospect_article_title: values.retrospect_article_title,
+                          retrospect_article_url: values.retrospect_article_url,
+                          max_people_limit: values.max_people_limit,
+                          need_enroll: values.need_enroll,
+                          host_clubs: values.host_clubs,
+                          review_state: values.review_state,
+                          activity_pdf: values.activity_pdf
+                      }).then((res) => {
+                          if (!res.success) {
+                              Modal.confirm({
+                                  title: '活动创建失败',
+                                  content: '请检查您的输入后重试',
+                                  okText: '我知道了',
+                                  cancelText: '好的'
+                              })
+                          } else {
+                              this.setState({createVisible: false}, () => {
+                                  form.resetFields()
+                                  this.refresh()
+                              })
+                          }
+                      })
+                  }
+              }
           })
-        } else {
-          this.setState({ createVisible: false }, () => {
-            form.resetFields()
-            this.refresh()
-          })
-        }
       })
-    })
   }
+
 
   handleReview = () => {
     const { clubId } = this.state
