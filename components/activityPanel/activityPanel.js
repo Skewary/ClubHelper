@@ -143,94 +143,94 @@ const ActivityUpdateForm = Form.create({ name: 'activity_update' })(
             </Form.Item>
 
               <Form.Item label="场地使用日期">
-                  {getFieldDecorator('date', {
+                  {getFieldDecorator('act_date', {
                       rules: [
-                          { required: true, message: '请选择场地使用日期' },
+                          { required: false, message: '请选择场地使用日期' },
                       ],
                   })(
                       <Select >
-                          <Select.Option value="2020-6-1">2020-6-1</Select.Option>
-                          <Select.Option value="2020-6-2">2020-6-2</Select.Option>
-                          <Select.Option value="2020-6-3">2020-6-3</Select.Option>
-                          <Select.Option value="2020-6-4">2020-6-4</Select.Option>
-                          <Select.Option value="2020-6-5">2020-6-5</Select.Option>
-                          <Select.Option value="2020-6-6">2020-6-6</Select.Option>
-                          <Select.Option value="2020-6-7">2020-6-7</Select.Option>
-                          <Select.Option value="2020-6-8">2020-6-8</Select.Option>
-                          <Select.Option value="2020-6-9">2020-6-9</Select.Option>
-                          <Select.Option value="2020-6-10">2020-6-10</Select.Option>
-                          <Select.Option value="2020-6-11">2020-6-11</Select.Option>
-                          <Select.Option value="2020-6-12">2020-6-12</Select.Option>
-                          <Select.Option value="2020-6-13">2020-6-13</Select.Option>
-                          <Select.Option value="2020-6-14">2020-6-14</Select.Option>
-                          <Select.Option value="2020-6-15">2020-6-15</Select.Option>
-                          <Select.Option value="2020-6-16">2020-6-16</Select.Option>
-                          <Select.Option value="2020-6-17">2020-6-17</Select.Option>
-                          <Select.Option value="2020-6-18">2020-6-18</Select.Option>
-                          <Select.Option value="2020-6-19">2020-6-19</Select.Option>
-                          <Select.Option value="2020-6-20">2020-6-20</Select.Option>
-                          <Select.Option value="2020-6-21">2020-6-21</Select.Option>
-                          <Select.Option value="2020-6-22">2020-6-22</Select.Option>
-                          <Select.Option value="2020-6-23">2020-6-23</Select.Option>
-                          <Select.Option value="2020-6-24">2020-6-24</Select.Option>
-                          <Select.Option value="2020-6-25">2020-6-25</Select.Option>
-                          <Select.Option value="2020-6-26">2020-6-26</Select.Option>
-                          <Select.Option value="2020-6-27">2020-6-27</Select.Option>
-                          <Select.Option value="2020-6-28">2020-6-28</Select.Option>
-                          <Select.Option value="2020-6-29">2020-6-29</Select.Option>
-                          <Select.Option value="2020-6-30">2020-6-30</Select.Option>
+                          <Select.Option value="2020-06-01">2020-06-01</Select.Option>
+                          <Select.Option value="2020-06-02">2020-06-02</Select.Option>
+                          <Select.Option value="2020-06-03">2020-06-03</Select.Option>
+                          <Select.Option value="2020-06-04">2020-06-04</Select.Option>
+                          <Select.Option value="2020-06-05">2020-06-05</Select.Option>
+                          <Select.Option value="2020-06-06">2020-06-06</Select.Option>
+                          <Select.Option value="2020-06-07">2020-06-07</Select.Option>
+                          <Select.Option value="2020-06-08">2020-06-08</Select.Option>
+                          <Select.Option value="2020-06-09">2020-06-09</Select.Option>
+                          <Select.Option value="2020-06-10">2020-06-10</Select.Option>
+                          <Select.Option value="2020-06-11">2020-06-11</Select.Option>
+                          <Select.Option value="2020-06-12">2020-06-12</Select.Option>
+                          <Select.Option value="2020-06-13">2020-06-13</Select.Option>
+                          <Select.Option value="2020-06-14">2020-06-14</Select.Option>
+                          <Select.Option value="2020-06-15">2020-06-15</Select.Option>
+                          <Select.Option value="2020-06-16">2020-06-16</Select.Option>
+                          <Select.Option value="2020-06-17">2020-06-17</Select.Option>
+                          <Select.Option value="2020-06-18">2020-06-18</Select.Option>
+                          <Select.Option value="2020-06-19">2020-06-19</Select.Option>
+                          <Select.Option value="2020-06-20">2020-06-20</Select.Option>
+                          <Select.Option value="2020-06-21">2020-06-21</Select.Option>
+                          <Select.Option value="2020-06-22">2020-06-22</Select.Option>
+                          <Select.Option value="2020-06-23">2020-06-23</Select.Option>
+                          <Select.Option value="2020-06-24">2020-06-24</Select.Option>
+                          <Select.Option value="2020-06-25">2020-06-25</Select.Option>
+                          <Select.Option value="2020-06-26">2020-06-26</Select.Option>
+                          <Select.Option value="2020-06-27">2020-06-27</Select.Option>
+                          <Select.Option value="2020-06-28">2020-06-28</Select.Option>
+                          <Select.Option value="2020-06-29">2020-06-29</Select.Option>
+                          <Select.Option value="2020-06-30">2020-06-30</Select.Option>
                       </Select>
                   )}
               </Form.Item>
 
               <Form.Item label="场地使用开始时间">
-                  {getFieldDecorator('begin-time', {
+                  {getFieldDecorator('beg_time', {
                       rules: [
-                          { required: true, message: '请选择场地使用开始时间' },
+                          { required: false, message: '请选择场地使用开始时间' },
                       ],
                   })(
                       <Select >
-                          <Select.Option value="8:00">8:00</Select.Option>
-                          <Select.Option value="9:00">9:00</Select.Option>
-                          <Select.Option value="10:00">10:00</Select.Option>
-                          <Select.Option value="11:00">11:00</Select.Option>
-                          <Select.Option value="12:00">12:00</Select.Option>
-                          <Select.Option value="13:00">13:00</Select.Option>
-                          <Select.Option value="14:00">14:00</Select.Option>
-                          <Select.Option value="15:00">15:00</Select.Option>
-                          <Select.Option value="16:00">16:00</Select.Option>
-                          <Select.Option value="17:00">17:00</Select.Option>
-                          <Select.Option value="18:00">18:00</Select.Option>
-                          <Select.Option value="19:00">19:00</Select.Option>
-                          <Select.Option value="20:00">20:00</Select.Option>
-                          <Select.Option value="21:00">21:00</Select.Option>
-                          <Select.Option value="22:00">22:00</Select.Option>
+                          <Select.Option value="08:00:00">08:00:00</Select.Option>
+                          <Select.Option value="09:00:00">09:00:00</Select.Option>
+                          <Select.Option value="10:00:00">10:00:00</Select.Option>
+                          <Select.Option value="11:00:00">11:00:00</Select.Option>
+                          <Select.Option value="12:00:00">12:00:00</Select.Option>
+                          <Select.Option value="13:00:00">13:00:00</Select.Option>
+                          <Select.Option value="14:00:00">14:00:00</Select.Option>
+                          <Select.Option value="15:00:00">15:00:00</Select.Option>
+                          <Select.Option value="16:00:00">16:00:00</Select.Option>
+                          <Select.Option value="17:00:00">17:00:00</Select.Option>
+                          <Select.Option value="18:00:00">18:00:00</Select.Option>
+                          <Select.Option value="19:00:00">19:00:00</Select.Option>
+                          <Select.Option value="20:00:00">20:00:00</Select.Option>
+                          <Select.Option value="21:00:00">21:00:00</Select.Option>
+                          <Select.Option value="22:00:00">22:00:00</Select.Option>
                       </Select>
                   )}
               </Form.Item>
 
               <Form.Item label="场地使用结束时间">
-                  {getFieldDecorator('end-time', {
+                  {getFieldDecorator('fin_time', {
                       rules: [
-                          { required: true, message: '请选择场地使用结束时间' },
+                          { required: false, message: '请选择场地使用结束时间' },
                       ],
                   })(
                       <Select >
-                          <Select.Option value="8:00">8:00</Select.Option>
-                          <Select.Option value="9:00">9:00</Select.Option>
-                          <Select.Option value="10:00">10:00</Select.Option>
-                          <Select.Option value="11:00">11:00</Select.Option>
-                          <Select.Option value="12:00">12:00</Select.Option>
-                          <Select.Option value="13:00">13:00</Select.Option>
-                          <Select.Option value="14:00">14:00</Select.Option>
-                          <Select.Option value="15:00">15:00</Select.Option>
-                          <Select.Option value="16:00">16:00</Select.Option>
-                          <Select.Option value="17:00">17:00</Select.Option>
-                          <Select.Option value="18:00">18:00</Select.Option>
-                          <Select.Option value="19:00">19:00</Select.Option>
-                          <Select.Option value="20:00">20:00</Select.Option>
-                          <Select.Option value="21:00">21:00</Select.Option>
-                          <Select.Option value="22:00">22:00</Select.Option>
+                          <Select.Option value="08:00:00">08:00:00</Select.Option>
+                          <Select.Option value="09:00:00">09:00:00</Select.Option>
+                          <Select.Option value="10:00:00">10:00:00</Select.Option>
+                          <Select.Option value="11:00:00">11:00:00</Select.Option>
+                          <Select.Option value="12:00:00">12:00:00</Select.Option>
+                          <Select.Option value="13:00:00">13:00:00</Select.Option>
+                          <Select.Option value="14:00:00">14:00:00</Select.Option>
+                          <Select.Option value="15:00:00">15:00:00</Select.Option>
+                          <Select.Option value="16:00:00">16:00:00</Select.Option>
+                          <Select.Option value="17:00:00">17:00:00</Select.Option>
+                          <Select.Option value="18:00:00">18:00:00</Select.Option>
+                          <Select.Option value="19:00:00">19:00:00</Select.Option>
+                          <Select.Option value="20:00:00">20:00:00</Select.Option>
+                          <Select.Option value="21:00:00">21:00:00</Select.Option>
+                          <Select.Option value="22:00:00">22:00:00</Select.Option>
                       </Select>
                   )}
               </Form.Item>
@@ -394,94 +394,94 @@ const ActivityCreateForm = Form.create({ name: 'activity_create' })(
             </Form.Item>
 
               <Form.Item label="场地使用日期">
-                  {getFieldDecorator('date', {
+                  {getFieldDecorator('act_date', {
                       rules: [
                           { required: true, message: '请选择场地使用日期' },
                       ],
                   })(
                       <Select >
-                          <Select.Option value="2020-6-1">2020-6-1</Select.Option>
-                          <Select.Option value="2020-6-2">2020-6-2</Select.Option>
-                          <Select.Option value="2020-6-3">2020-6-3</Select.Option>
-                          <Select.Option value="2020-6-4">2020-6-4</Select.Option>
-                          <Select.Option value="2020-6-5">2020-6-5</Select.Option>
-                          <Select.Option value="2020-6-6">2020-6-6</Select.Option>
-                          <Select.Option value="2020-6-7">2020-6-7</Select.Option>
-                          <Select.Option value="2020-6-8">2020-6-8</Select.Option>
-                          <Select.Option value="2020-6-9">2020-6-9</Select.Option>
-                          <Select.Option value="2020-6-10">2020-6-10</Select.Option>
-                          <Select.Option value="2020-6-11">2020-6-11</Select.Option>
-                          <Select.Option value="2020-6-12">2020-6-12</Select.Option>
-                          <Select.Option value="2020-6-13">2020-6-13</Select.Option>
-                          <Select.Option value="2020-6-14">2020-6-14</Select.Option>
-                          <Select.Option value="2020-6-15">2020-6-15</Select.Option>
-                          <Select.Option value="2020-6-16">2020-6-16</Select.Option>
-                          <Select.Option value="2020-6-17">2020-6-17</Select.Option>
-                          <Select.Option value="2020-6-18">2020-6-18</Select.Option>
-                          <Select.Option value="2020-6-19">2020-6-19</Select.Option>
-                          <Select.Option value="2020-6-20">2020-6-20</Select.Option>
-                          <Select.Option value="2020-6-21">2020-6-21</Select.Option>
-                          <Select.Option value="2020-6-22">2020-6-22</Select.Option>
-                          <Select.Option value="2020-6-23">2020-6-23</Select.Option>
-                          <Select.Option value="2020-6-24">2020-6-24</Select.Option>
-                          <Select.Option value="2020-6-25">2020-6-25</Select.Option>
-                          <Select.Option value="2020-6-26">2020-6-26</Select.Option>
-                          <Select.Option value="2020-6-27">2020-6-27</Select.Option>
-                          <Select.Option value="2020-6-28">2020-6-28</Select.Option>
-                          <Select.Option value="2020-6-29">2020-6-29</Select.Option>
-                          <Select.Option value="2020-6-30">2020-6-30</Select.Option>
+                          <Select.Option value="2020-06-01">2020-06-01</Select.Option>
+                          <Select.Option value="2020-06-02">2020-06-02</Select.Option>
+                          <Select.Option value="2020-06-03">2020-06-03</Select.Option>
+                          <Select.Option value="2020-06-04">2020-06-04</Select.Option>
+                          <Select.Option value="2020-06-05">2020-06-05</Select.Option>
+                          <Select.Option value="2020-06-06">2020-06-06</Select.Option>
+                          <Select.Option value="2020-06-07">2020-06-07</Select.Option>
+                          <Select.Option value="2020-06-08">2020-06-08</Select.Option>
+                          <Select.Option value="2020-06-09">2020-06-09</Select.Option>
+                          <Select.Option value="2020-06-10">2020-06-10</Select.Option>
+                          <Select.Option value="2020-06-11">2020-06-11</Select.Option>
+                          <Select.Option value="2020-06-12">2020-06-12</Select.Option>
+                          <Select.Option value="2020-06-13">2020-06-13</Select.Option>
+                          <Select.Option value="2020-06-14">2020-06-14</Select.Option>
+                          <Select.Option value="2020-06-15">2020-06-15</Select.Option>
+                          <Select.Option value="2020-06-16">2020-06-16</Select.Option>
+                          <Select.Option value="2020-06-17">2020-06-17</Select.Option>
+                          <Select.Option value="2020-06-18">2020-06-18</Select.Option>
+                          <Select.Option value="2020-06-19">2020-06-19</Select.Option>
+                          <Select.Option value="2020-06-20">2020-06-20</Select.Option>
+                          <Select.Option value="2020-06-21">2020-06-21</Select.Option>
+                          <Select.Option value="2020-06-22">2020-06-22</Select.Option>
+                          <Select.Option value="2020-06-23">2020-06-23</Select.Option>
+                          <Select.Option value="2020-06-24">2020-06-24</Select.Option>
+                          <Select.Option value="2020-06-25">2020-06-25</Select.Option>
+                          <Select.Option value="2020-06-26">2020-06-26</Select.Option>
+                          <Select.Option value="2020-06-27">2020-06-27</Select.Option>
+                          <Select.Option value="2020-06-28">2020-06-28</Select.Option>
+                          <Select.Option value="2020-06-29">2020-06-29</Select.Option>
+                          <Select.Option value="2020-06-30">2020-06-30</Select.Option>
                       </Select>
                   )}
               </Form.Item>
 
               <Form.Item label="场地使用开始时间">
-                  {getFieldDecorator('begin-time', {
+                  {getFieldDecorator('beg_time', {
                       rules: [
                           { required: true, message: '请选择场地使用开始时间' },
                       ],
                   })(
                       <Select >
-                          <Select.Option value="8:00">8:00</Select.Option>
-                          <Select.Option value="9:00">9:00</Select.Option>
-                          <Select.Option value="10:00">10:00</Select.Option>
-                          <Select.Option value="11:00">11:00</Select.Option>
-                          <Select.Option value="12:00">12:00</Select.Option>
-                          <Select.Option value="13:00">13:00</Select.Option>
-                          <Select.Option value="14:00">14:00</Select.Option>
-                          <Select.Option value="15:00">15:00</Select.Option>
-                          <Select.Option value="16:00">16:00</Select.Option>
-                          <Select.Option value="17:00">17:00</Select.Option>
-                          <Select.Option value="18:00">18:00</Select.Option>
-                          <Select.Option value="19:00">19:00</Select.Option>
-                          <Select.Option value="20:00">20:00</Select.Option>
-                          <Select.Option value="21:00">21:00</Select.Option>
-                          <Select.Option value="22:00">22:00</Select.Option>
+                          <Select.Option value="08:00:00">08:00:00</Select.Option>
+                          <Select.Option value="09:00:00">09:00:00</Select.Option>
+                          <Select.Option value="10:00:00">10:00:00</Select.Option>
+                          <Select.Option value="11:00:00">11:00:00</Select.Option>
+                          <Select.Option value="12:00:00">12:00:00</Select.Option>
+                          <Select.Option value="13:00:00">13:00:00</Select.Option>
+                          <Select.Option value="14:00:00">14:00:00</Select.Option>
+                          <Select.Option value="15:00:00">15:00:00</Select.Option>
+                          <Select.Option value="16:00:00">16:00:00</Select.Option>
+                          <Select.Option value="17:00:00">17:00:00</Select.Option>
+                          <Select.Option value="18:00:00">18:00:00</Select.Option>
+                          <Select.Option value="19:00:00">19:00:00</Select.Option>
+                          <Select.Option value="20:00:00">20:00:00</Select.Option>
+                          <Select.Option value="21:00:00">21:00:00</Select.Option>
+                          <Select.Option value="22:00:00">22:00:00</Select.Option>
                       </Select>
                   )}
               </Form.Item>
 
               <Form.Item label="场地使用结束时间">
-                  {getFieldDecorator('end-time', {
+                  {getFieldDecorator('fin_time', {
                       rules: [
                           { required: true, message: '请选择场地使用结束时间' },
                       ],
                   })(
                       <Select >
-                          <Select.Option value="8:00">8:00</Select.Option>
-                          <Select.Option value="9:00">9:00</Select.Option>
-                          <Select.Option value="10:00">10:00</Select.Option>
-                          <Select.Option value="11:00">11:00</Select.Option>
-                          <Select.Option value="12:00">12:00</Select.Option>
-                          <Select.Option value="13:00">13:00</Select.Option>
-                          <Select.Option value="14:00">14:00</Select.Option>
-                          <Select.Option value="15:00">15:00</Select.Option>
-                          <Select.Option value="16:00">16:00</Select.Option>
-                          <Select.Option value="17:00">17:00</Select.Option>
-                          <Select.Option value="18:00">18:00</Select.Option>
-                          <Select.Option value="19:00">19:00</Select.Option>
-                          <Select.Option value="20:00">20:00</Select.Option>
-                          <Select.Option value="21:00">21:00</Select.Option>
-                          <Select.Option value="22:00">22:00</Select.Option>
+                          <Select.Option value="08:00:00">08:00:00</Select.Option>
+                          <Select.Option value="09:00:00">09:00:00</Select.Option>
+                          <Select.Option value="10:00:00">10:00:00</Select.Option>
+                          <Select.Option value="11:00:00">11:00:00</Select.Option>
+                          <Select.Option value="12:00:00">12:00:00</Select.Option>
+                          <Select.Option value="13:00:00">13:00:00</Select.Option>
+                          <Select.Option value="14:00:00">14:00:00</Select.Option>
+                          <Select.Option value="15:00:00">15:00:00</Select.Option>
+                          <Select.Option value="16:00:00">16:00:00</Select.Option>
+                          <Select.Option value="17:00:00">17:00:00</Select.Option>
+                          <Select.Option value="18:00:00">18:00:00</Select.Option>
+                          <Select.Option value="19:00:00">19:00:00</Select.Option>
+                          <Select.Option value="20:00:00">20:00:00</Select.Option>
+                          <Select.Option value="21:00:00">21:00:00</Select.Option>
+                          <Select.Option value="22:00:00">22:00:00</Select.Option>
                       </Select>
                   )}
               </Form.Item>
@@ -950,6 +950,9 @@ export class ActivityPanel extends React.Component {
 
       $put('/clubs/admin/' + clubId + '/activity/' + activityId + '/update',{
         position: values.position,
+        act_date:values.act_date,
+        beg_time:values.beg_time,
+        fin_time:values.fin_time,
         description: values.description,
         start_time: (!!values.start_time ? values.start_time.format('YYYY-MM-DD HH:mm:ss') : undefined) || detail.start_time,
         end_time: (!!values.end_time ? values.end_time.format('YYYY-MM-DD HH:mm:ss') : undefined) || detail.end_time,
@@ -995,6 +998,9 @@ export class ActivityPanel extends React.Component {
       $post('/clubs/admin/' + clubId + '/activity', {
         name: values.name,
         position: values.position,
+        act_date:values.act_date,
+        beg_time:values.beg_time,
+        fin_time:values.fin_time,
         description: values.description,
         start_time: values.start_time.format('YYYY-MM-DD HH:mm:ss'),
         end_time: !!values.end_time ? values.end_time.format('YYYY-MM-DD HH:mm:ss') : null,
