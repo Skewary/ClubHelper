@@ -46,13 +46,13 @@ export class PictureUploader extends React.Component {
       onChange: this.handleChange,
       withCredentials: true,
       listType: 'picture',
-      accept: '.jpg,.jpeg,.png,.svg',
+      accept: '.jpg,.jpeg,.png,.svg,.zip',
       beforeUpload: this.beforeUpload
     }
     return (
       <Upload {...props} fileList={this.state.fileList}>
         <Button>
-          <Icon type={'upload'}/>点此上传图片
+          <Icon type={'upload'}/>点此上传
         </Button>
       </Upload>
     )

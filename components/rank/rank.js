@@ -1,6 +1,6 @@
 import React from 'react'
 import {Layout, Menu, Breadcrumb} from 'antd'
-import {BrowserRouter as Router, Redirect, Route, Switch} from 'react-router-dom'
+import {HashRouter as Router, Redirect, Route, Switch} from 'react-router-dom'
 import { Rate } from 'antd';
 
 import {

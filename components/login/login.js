@@ -14,8 +14,8 @@ export class Login extends React.Component {
       uuid: null,
       state: 'none',
       error_message: '',
-      signUpVisible: false,
-      signInVisible: false,
+      signUpVisible: false,//注册
+      signInVisible: false,//登录
       forgetVisible: false
     }
   }
@@ -35,6 +35,10 @@ export class Login extends React.Component {
         state: 'error'
       })
     })
+  }
+  componentWillUnmount(){
+    console.log('login.js unmount')
+    clearInterval(this.interval)
   }
 
   listen() {
@@ -134,7 +138,7 @@ export class Login extends React.Component {
           }}
           visible={this.state.signUpVisible}
         >
-          <MyRegisterForm />
+          <MyRegisterForm history={this.props.history}/>
 
         </Modal>
       </div >
@@ -175,6 +179,7 @@ class LoginForm extends React.Component {
             clearInterval(this.interval)
           } else if (res.code == ErrorCodes.USER_PASSWORD_WRONG) {
             message.error('登录失败：用户名或密码错误')
+            this.props.history.push('/admin/index')
           } else if (res.code == ErrorCodes.USER_LOCKED) {
             message.error('登录失败：用户被锁')
           } else {
@@ -221,7 +226,7 @@ class LoginForm extends React.Component {
         </Form.Item>
         <Form.Item>
           <Button type="primary" htmlType="submit" disabled={hasErrors(getFieldsError())}>
-            Log in
+            登录
           </Button>
         </Form.Item>
       </Form>
@@ -252,6 +257,8 @@ class RegisterForm extends React.Component {
             message.success('注册成功')
           } else {
             message.error('注册失败')
+            this.props.history.push('/admin/index')
+
           }
         }).catch(err => {
           console.log('reg catch...')
@@ -274,7 +281,8 @@ class RegisterForm extends React.Component {
     const realNameError = isFieldTouched('realName') && getFieldError('realName');
     const studentIdError = isFieldTouched('studentId') && getFieldError('studentId');
     const emailError = isFieldTouched('email') && getFieldError('email');
-
+    const wxidError = isFieldTouched('wxid') && getFieldError('wxid');
+    
     return (
       <Form onSubmit={this.handleSubmit}>
         <Form.Item validateStatus={usernameError ? 'error' : ''} help={usernameError || ''}>
@@ -284,6 +292,16 @@ class RegisterForm extends React.Component {
             <Input
               prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
               placeholder="Username"
+            />,
+          )}
+        </Form.Item>
+        <Form.Item validateStatus={wxidError ? 'error' : ''} help={wxidError || ''}>
+          {getFieldDecorator('wxid', {
+            rules: [{ required: true, message: 'Please input your wechat number!' }],
+          })(
+            <Input
+              prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
+              placeholder="WeChat Number"
             />,
           )}
         </Form.Item>
@@ -341,7 +359,7 @@ class RegisterForm extends React.Component {
         </Form.Item>
         <Form.Item>
           <Button type="primary" htmlType="submit" disabled={hasErrors(getFieldsError())}>
-            Log in
+            注册
           </Button>
         </Form.Item>
       </Form>

@@ -1,6 +1,6 @@
 import React from 'react'
 import {Layout, Menu, Breadcrumb} from 'antd'
-import {BrowserRouter as Router, Redirect, Route, Switch} from 'react-router-dom'
+import {HashRouter as Router, Redirect, Route, Switch} from 'react-router-dom'
 import {ClubPanel} from '../clubPanel/clubPanel'
 import PrivateRoute from '../../components/privateRoute/privateRoute'
 
@@ -40,8 +40,9 @@ export class Container extends React.Component {
             style={{lineHeight: '64px'}}
           >
             <Menu.Item onClick={this.gotoIndex.bind(this)} key="1">主页</Menu.Item>
-            <Menu.Item onClick={this.logout.bind(this)} key="2">登出</Menu.Item>
-            <Menu.Item onClick={this.gotospace.bind(this)} key="3">场地查询</Menu.Item>
+            <Menu.Item onClick={this.gotospace.bind(this)} key="2">场地查询</Menu.Item>
+            <Menu.Item onClick={this.logout.bind(this)} key="3">登出</Menu.Item>
+
           </Menu>
         </Header>
         <Content style={{padding: '0 50px'}}>
@@ -60,7 +61,7 @@ export class Container extends React.Component {
             </Switch>
           </div>
         </Content>
-        <Footer style={{textAlign: 'center'}}>BuaaClubs ©2019 Created by BuaaRedSun</Footer>
+        <Footer style={{textAlign: 'center'}}>BuaaClubs ©2020 Created by rogerpirates</Footer>
       </Layout>
     )
   }

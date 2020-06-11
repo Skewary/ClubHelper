@@ -235,6 +235,21 @@ const ActivityUpdateForm = Form.create({ name: 'activity_update' })(
                   )}
               </Form.Item>
 
+            <Form.Item label={'活动文件上传(仅支持zip格式)'}>
+                {getFieldDecorator('post_vertical_image', {
+                    valuePropName: 'fileList',
+                })(
+                    <PictureUploader max={1}/>
+                )}
+            </Form.Item>
+
+            <Form.Item label={'海报图片'}>
+                {getFieldDecorator('post_horizontal_image', {
+                    valuePropName: 'fileList'
+                })(
+                    <PictureUploader max={1}/>
+                )}
+            </Form.Item>
 
 
               <Form.Item label="活动描述">
@@ -486,6 +501,23 @@ const ActivityCreateForm = Form.create({ name: 'activity_create' })(
                   )}
               </Form.Item>
 
+            <Form.Item label={'活动文件上传(仅支持zip格式)'}>
+                {getFieldDecorator('post_vertical_image', {
+                    valuePropName: 'fileList',
+                })(
+                    <PictureUploader max={1}/>
+                )}
+            </Form.Item>
+
+            <Form.Item label={'海报图片'}>
+                {getFieldDecorator('post_horizontal_image', {
+                    valuePropName: 'fileList'
+                })(
+                    <PictureUploader max={1}/>
+                )}
+            </Form.Item>
+
+
               <Form.Item label="活动描述">
               {getFieldDecorator('description', {
                 rules: [{ required: true, message: '请输入活动描述' }],
@@ -592,6 +624,13 @@ const ActivityReviewForm = Form.create({ name: 'activity_review' })(
                 initialValue: activity.place
               })(<Input disabled/>)}
             </Form.Item>
+
+            <Form.Item label="活动文件">
+                {getFieldDecorator('description', {
+                    initialValue: img(activity.post_url_vertical)
+                })(<Input disabled />)}
+            </Form.Item>
+
             <Form.Item label="活动描述">
               {getFieldDecorator('description', {
                 initialValue: activity.description
